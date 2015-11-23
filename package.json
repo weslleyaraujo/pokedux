@@ -1,0 +1,32 @@
+{
+  "name": "pokedux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "./node_modules/node-static/bin/cli.js -p 3000 .",
+    "watch:js": "watchify src/assets/js/index.js -o dist/assets/js/index.js -v",
+    "build:js": "browserify src/assets/js/index.js -t [ babelify ] | uglifyjs > dist/assets/js/index.js",
+    "start": "npm run watch:js & npm run server"
+  },
+  "browserify": {
+    "transform": [
+      "babelify"
+    ]
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18",
+    "babel-preset-react": "^6.1.18",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "node-static": "^0.7.7",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3",
+    "redux": "^3.0.4",
+    "uglify": "^0.1.5",
+    "watchify": "^3.6.1"
+  }
+}
