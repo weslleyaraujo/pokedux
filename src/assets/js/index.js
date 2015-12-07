@@ -1,16 +1,13 @@
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
 
-let loadPokemons = () => {
-  return {
-    type: 'LOAD_POKEMONS'
-  }
-}
+import App from './containers/App';
+import store from './store';
 
-let pokeReducer = (store, action) => {
-  return store;
-}
-
-let pokeStore = createStore(pokeReducer);
-
-
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.querySelector('#app')
+);
