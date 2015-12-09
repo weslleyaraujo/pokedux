@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
+import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import * as pokemonsActions from '../actions/pokemons';
 import PokemonList from '../components/PokemonList';
 
 function mapStateToProps(state) {
@@ -9,13 +11,18 @@ function mapStateToProps(state) {
   }
 }
 
-function mapDispatchToProps() {
+function mapDispatchToProps(dispatch) {
   return {
-  
+    actions: bindActionCreators(pokemonsActions, dispatch)
   }
 }
 
 class App extends Component {
+  componentDidMount() {
+    const { actions } = this.props;
+    actions.fetchPokedex();
+  }
+
   render() {
     const { pokemons } = this.props;
     return (
@@ -27,7 +34,8 @@ class App extends Component {
 }
 
 App.proptypes = {
-  pokemons: PropTypes.array.isRequired
+  pokemons: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
