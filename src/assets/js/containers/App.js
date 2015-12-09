@@ -5,9 +5,10 @@ import { connect } from 'react-redux';
 import * as pokemonsActions from '../actions/pokemons';
 import PokemonList from '../components/PokemonList';
 
-function mapStateToProps(state) {
+function mapStateToProps({ pokedex }) {
   return {
-    pokemons: state.pokemons
+    pokemons: pokedex.pokemons,
+    isLoading: pokedex.isLoading
   }
 }
 
@@ -24,9 +25,10 @@ class App extends Component {
   }
 
   render() {
-    const { pokemons } = this.props;
+    const { pokemons, isLoading } = this.props;
     return (
       <div>
+        {isLoading && 'loading data...'}
         <PokemonList pokemons={pokemons} />
       </div>
     );
