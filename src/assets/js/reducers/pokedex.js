@@ -1,8 +1,10 @@
 import {
   FETCH_POKEDEX_REQUEST,
   FETCH_POKEDEX_SUCCESS,
-  FETCH_POKEDEX_ERROR
+  FETCH_POKEDEX_ERROR,
 } from '../constants/actionTypes';
+
+import pokemon from './pokemon';
 
 const INITIAL_STATE = {
   isLoading: false,
@@ -19,9 +21,13 @@ export default function pokedex(state = INITIAL_STATE, action) {
       }
 
     case FETCH_POKEDEX_SUCCESS:
+      let { objects } = action.data;
+      let pokemons = objects.reduce((c, n) => [...c, ...n.pokemon], [])
+        .map(pokemon);
+
       return {
         ...state,
-        pokemons: action.data.objects.reduce((c, n) => [...c, ...n.pokemon], []),
+        pokemons,
         isLoading: false
       }
 
