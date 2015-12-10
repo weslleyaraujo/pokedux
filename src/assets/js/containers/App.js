@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Router, Route } from 'react-router';
 
 import * as pokemonsActions from '../actions/pokemons';
 import PokemonList from '../components/PokemonList';
@@ -20,17 +21,21 @@ function mapDispatchToProps(dispatch) {
 
 class App extends Component {
   componentDidMount() {
-    const { actions } = this.props;
+    let { actions } = this.props;
     actions.fetchPokedex();
   }
 
   render() {
-    const { pokemons, isLoading } = this.props;
+    const { pokemons, actions } = this.props;
     return (
       <div>
-        <h1>Learning Redux with pokemons!</h1>
-        {isLoading && 'loading data...'}
-        <PokemonList pokemons={pokemons} />
+        <header>
+          <h1>Pokedux :)</h1>
+        </header>
+				{this.props.children || <PokemonList pokemons={pokemons}/>}
+        <footer>
+          <small>just learning some redux</small>
+        </footer>
       </div>
     );
   }

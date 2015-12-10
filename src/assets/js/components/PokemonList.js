@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 
-import Pokemon from './Pokemon';
+import PokemonListItem from './PokemonListItem';
 
 class PokemonList extends Component {
-  render() {
-    const { pokemons } = this.props;
 
+  render() {
+    let { pokemons } = this.props;
     return (
       <ul>
         {pokemons.map((pokemon, i) => {
-          return (<Pokemon key={i} {...pokemon} onClick={() => { console.log('hue') }}/>)
+          return (<PokemonListItem key={i} {...pokemon} />);
         })}
       </ul>
     );
