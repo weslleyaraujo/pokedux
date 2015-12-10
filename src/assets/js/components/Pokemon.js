@@ -6,8 +6,7 @@ const Pokemon = ({
   onClick
 }) => (
   <li>
-    {name}
-    <img src={image} alt={name} />
+    {name} - {image}
     <button onClick={onClick} >Take a better look into it.</button>
   </li>
 );

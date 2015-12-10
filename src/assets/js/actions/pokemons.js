@@ -1,6 +1,7 @@
 import * as actionTypes from '../constants/actionTypes'
 import { POKEDEX_SERVICE_URL } from '../constants/services';
-import fetch from 'node-fetch';
+import { polyfill } from 'es6-promise';
+import fetch from 'isomorphic-fetch';
 
 export function fetchPokedexRequest() {
   return {

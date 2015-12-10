@@ -28,6 +28,7 @@ class App extends Component {
     const { pokemons, isLoading } = this.props;
     return (
       <div>
+        <h1>Learning Redux with pokemons!</h1>
         {isLoading && 'loading data...'}
         <PokemonList pokemons={pokemons} />
       </div>

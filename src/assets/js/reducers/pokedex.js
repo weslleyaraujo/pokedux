@@ -23,7 +23,7 @@ export default function pokedex(state = INITIAL_STATE, action) {
     case FETCH_POKEDEX_SUCCESS:
       let { objects } = action.data;
       let pokemons = objects.reduce((c, n) => [...c, ...n.pokemon], [])
-        .map(pokemon);
+        .map((x) => pokemon(x));
 
       return {
         ...state,
