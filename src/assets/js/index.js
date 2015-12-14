@@ -9,7 +9,9 @@ import createBrowserHistory from 'history/lib/createBrowserHistory';
 import App from './containers/App';
 import Pokedex from './components/Pokedex';
 import Pokemon from './components/Pokemon';
-import store from './store';
+import configureStore from './store/configureStore';
+
+let store = configureStore();
 
 render(
   <div>
