@@ -31,7 +31,7 @@ class App extends Component {
         <header>
           <h1>Pokedux :)</h1>
         </header>
-        {this.props.children}
+          {this.props.children}
           <Link to="pokedex">Take a look into the pokedex!</Link>
         <footer>
           <small>just learning some redux</small>
