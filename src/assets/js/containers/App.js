@@ -3,29 +3,17 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
-import * as pokemonsActions from '../actions/pokemons';
 
-function mapStateToProps({ pokedex }) {
+function mapStateToProps({ status }) {
   return {
-    pokemons: pokedex.pokemons,
-    isLoading: pokedex.isLoading
-  }
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(pokemonsActions, dispatch)
+    status,
   }
 }
 
 class App extends Component {
-  componentDidMount() {
-    let { actions } = this.props;
-    actions.fetchPokedex();
-  }
 
   render() {
-    const { pokemons, actions } = this.props;
+    console.log('from App:', this.props);
     return (
       <div>
         <header>
@@ -39,11 +27,11 @@ class App extends Component {
       </div>
     );
   }
+
 }
 
 App.proptypes = {
-  pokemons: PropTypes.array.isRequired,
-  actions: PropTypes.object.isRequired
+  status: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

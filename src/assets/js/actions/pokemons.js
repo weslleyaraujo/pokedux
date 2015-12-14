@@ -1,13 +1,17 @@
-import * as actionTypes from '../constants/actionTypes'
-import { POKEDEX_SERVICE_URL } from '../constants/services';
 import { polyfill } from 'es6-promise';
 import fetch from 'isomorphic-fetch';
 
-export function fetchPokedexRequest() {
-  return {
-    type: actionTypes.FETCH_POKEDEX_REQUEST
-  };
-}
+import * as actionTypes from '../constants/actionTypes'
+import { setStatus } from './status';
+import { POKEDEX_SERVICE_URL } from '../constants/services';
+
+import {
+  NETWORK_ERROR,
+  NETWORK_ERROR_MESSAGE,
+  LOADING_STATUS,
+  LOADING_STATUS_MESSAGE,
+  NULL_STATUS
+} from '../constants/status';
 
 export function fetchPokedexSuccess(data) {
   return {
@@ -16,19 +20,26 @@ export function fetchPokedexSuccess(data) {
   };
 }
 
-export function fetchPokedexError(error) {
-  return {
-    type: actionTypes.FETCH_POKEDEX_ERROR,
-    error
-  };
-}
-
 export function fetchPokedex() {
   return dispatch => {
-    dispatch(fetchPokedexRequest());
+    dispatch(setStatus({
+      status: LOADING_STATUS,
+      message: LOADING_STATUS_MESSAGE
+    }));
+
     fetch(POKEDEX_SERVICE_URL)
-      .then((response) => response.json())
-      .then((data) => dispatch(fetchPokedexSuccess(data)))
-      .catch((error) => dispatch(fetchPokedexError(error)));
+    .then((response) => response.json())
+    .then((data) => {
+      dispatch(setStatus({
+        status: NULL_STATUS
+      }))
+      dispatch(fetchPokedexSuccess(data))
+    })
+    .catch((error) => {
+      dispatch(setStatus({
+        status: LOADING_STATUS,
+        message: LOADING_STATUS_MESSAGE
+      }));
+    });
   }
 }
