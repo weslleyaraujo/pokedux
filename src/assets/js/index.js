@@ -7,15 +7,22 @@ import { ReduxRouter } from 'redux-router';
 import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import App from './containers/App';
+import Pokedex from './components/Pokedex';
 import Pokemon from './components/Pokemon';
 import store from './store';
 
 render(
   <div>
     <Provider store={store}>
-      <ReduxRouter>
-        <Route path="/" component={App} />
-      </ReduxRouter>
+      <Router>
+        <ReduxRouter>
+          <Route path="/" component={App}>
+            <Route path="pokedex" component={Pokedex}>
+              <Route path="pokemon" component={Pokemon} />
+            </Route>
+          </Route>
+        </ReduxRouter>
+      </Router>
     </Provider>
 
     <DebugPanel top right bottom>
