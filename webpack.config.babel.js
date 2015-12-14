@@ -1,7 +1,10 @@
-var path = require('path');
-var webpack = require('webpack');
+import path from 'path';
+import webpack, { HotModuleReplacementPlugin } from 'webpack';
 
-module.exports = {
+const filename = 'bundle.js';
+const publicPath = '/static/';
+
+export default {
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
@@ -10,11 +13,11 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'dist/assets/js'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    filename,
+    publicPath
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin()
+    new HotModuleReplacementPlugin()
   ],
   module: {
     loaders: [{
@@ -22,5 +25,12 @@ module.exports = {
       loaders: ['react-hot', 'babel'],
       include: path.join(__dirname, 'src')
     }]
-  }
-};
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true,
+    inline: true,
+    progress: true,
+    port: 3000
+  },
+}

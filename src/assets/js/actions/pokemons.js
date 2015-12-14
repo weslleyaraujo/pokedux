@@ -1,4 +1,6 @@
-import { polyfill } from 'es6-promise';
+
+import { polyfill } from 'es6-promise'; // NOTE: do not remove me,
+                                        // it is required by the `fetch` module.
 import fetch from 'isomorphic-fetch';
 
 import * as actionTypes from '../constants/actionTypes'
