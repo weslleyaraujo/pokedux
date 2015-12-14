@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
 
+import Status from '../components/Status'
+
 function mapStateToProps({ status }) {
   return {
     status,
@@ -13,9 +15,10 @@ function mapStateToProps({ status }) {
 class App extends Component {
 
   render() {
-    console.log('from App:', this.props);
+    let { status } = this.props;
     return (
       <div>
+        <Status {...status} />
         <header>
           <h1>Pokedux :)</h1>
         </header>
