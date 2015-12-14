@@ -21,7 +21,7 @@
     "babel-preset-react": "^6.1.18",
     "babel-preset-stage-2": "^6.3.13",
     "es6-promise": "^3.0.2",
-    "history": "^1.13.1",
+    "history": "1.13.1",
     "isomorphic-fetch": "^2.2.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
@@ -34,8 +34,5 @@
     "redux-thunk": "^1.0.0",
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.0"
-  },
-  "dependencies": {
-    "redux-thunk": "^1.0.0"
   }
 }
