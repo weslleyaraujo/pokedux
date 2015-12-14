@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
+import { routerStateReducer as router } from 'redux-router';
 
-import * as actionTypes from '../constants/actionTypes';
 import pokedex from './pokedex';
 
 export default combineReducers({
-  pokedex
+  pokedex,
+  router,
 });

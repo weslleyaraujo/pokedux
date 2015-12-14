@@ -2,14 +2,27 @@ import React from 'react';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import { Router, Route } from 'react-router';
+import { ReduxRouter } from 'redux-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
 
 import App from './containers/App';
+import Pokedex from './components/Pokedex';
+import Pokemon from './components/Pokemon';
 import store from './store';
 
 render(
   <div>
     <Provider store={store}>
-      <App />
+      <Router>
+        <ReduxRouter>
+          <Route path="/" component={App}>
+            <Route path="pokedex" component={Pokedex}>
+              <Route path="pokemon" component={Pokemon} />
+            </Route>
+          </Route>
+        </ReduxRouter>
+      </Router>
     </Provider>
 
     <DebugPanel top right bottom>

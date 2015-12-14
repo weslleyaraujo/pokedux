@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-const Pokemon = ({
-  name,
-  image,
-  onClick
-}) => (
-  <li>
-    {name} - {image}
-    <button onClick={onClick} >Take a better look into it.</button>
-  </li>
-);
+class Pokemon extends Component {
+
+  render() {
+    return (
+      <div>
+        Hello from Pokemon
+      </div>
+    );
+  }
+}
 
 export default Pokemon;
