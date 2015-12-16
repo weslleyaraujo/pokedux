@@ -37,11 +37,11 @@ describe('#actions/pokemons', () => {
     });
 
     it('dispatch listed action after successfully get data from pokeapi.', (done) => {
-			nock(POKEAPI_ROOT_URL)
-				.get(POKEAPI_POKEDEX_URL)
-				.reply(200, {});
+      nock(POKEAPI_ROOT_URL)
+        .get(POKEAPI_POKEDEX_URL)
+        .reply(200, {});
 
-			const expectedActions = [
+      const expectedActions = [
         {
           type: actionTypes.SET_STATUS,
           data: {
@@ -66,11 +66,11 @@ describe('#actions/pokemons', () => {
     });
 
     it('dispatch listed actions whenever an error occurs.', (done) => {
-			nock(POKEAPI_ROOT_URL)
-				.get(POKEAPI_POKEDEX_URL)
-				.replyWithError();
+      nock(POKEAPI_ROOT_URL)
+        .get(POKEAPI_POKEDEX_URL)
+        .replyWithError();
 
-			const expectedActions = [
+      const expectedActions = [
         { type: actionTypes.SET_STATUS,
           data: {
             status: statusConstants.LOADING_STATUS,
