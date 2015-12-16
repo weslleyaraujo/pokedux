@@ -23,9 +23,6 @@ describe('#reducers/status', () => {
 
       expect(result).to.have.property('status');
       expect(result.status).to.equal(data.status);
-
-      expect(result).to.have.property('type');
-      expect(result.type).to.equal(data.type);
     });
 
   });
