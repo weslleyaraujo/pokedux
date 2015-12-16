@@ -11,6 +11,10 @@ export const INITIAL_STATE = {
 };
 
 export function pokedex(state = INITIAL_STATE, action) {
+  if (!action) {
+    return state;
+  }
+
   switch (action.type) {
     case FETCH_POKEDEX_SUCCESS:
       let { objects } = action.data;
