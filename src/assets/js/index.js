@@ -11,7 +11,7 @@ let history = createHashHistory({
 });
 
 import App from './containers/App';
-import Pokedex from './components/Pokedex';
+import Pokedex from './containers/Pokedex';
 import Pokemon from './components/Pokemon';
 import configureStore from './store/configureStore';
 
