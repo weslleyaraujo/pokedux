@@ -1,19 +1,17 @@
-
-import { polyfill } from 'es6-promise'; // NOTE: do not remove me,
-                                        // it is required by the `fetch` module.
 import fetch from 'isomorphic-fetch';
+import { polyfill } from 'es6-promise';
+import { bindActionCreators } from 'redux';
 
 import * as actionTypes from '../constants/actionTypes'
 import { setStatus } from './status';
-import { POKEDEX_SERVICE_URL } from '../constants/services';
 
-import {
-  NETWORK_ERROR,
-  NETWORK_ERROR_MESSAGE,
-  LOADING_STATUS,
-  LOADING_STATUS_MESSAGE,
-  NULL_STATUS
-} from '../constants/status';
+import { POKEAPI_ROOT_URL, POKEAPI_POKEDEX_URL } from '../constants/services';
+import * as statusConstants from '../constants/status';
+
+
+function getUrl(path) {
+  return POKEAPI_ROOT_URL + path;
+}
 
 export function fetchPokedexSuccess(data) {
   return {
@@ -24,24 +22,32 @@ export function fetchPokedexSuccess(data) {
 
 export function fetchPokedex() {
   return dispatch => {
-    dispatch(setStatus({
-      status: LOADING_STATUS,
-      message: LOADING_STATUS_MESSAGE
-    }));
-
-    fetch(POKEDEX_SERVICE_URL)
-    .then((response) => response.json())
-    .then((data) => {
-      dispatch(setStatus({
-        status: NULL_STATUS
-      }))
-      dispatch(fetchPokedexSuccess(data))
+    let action = setStatus({
+      status: statusConstants.LOADING_STATUS,
+      message: statusConstants.LOADING_STATUS_MESSAGE
     })
-    .catch((error) => {
-      dispatch(setStatus({
-        status: LOADING_STATUS,
-        message: LOADING_STATUS_MESSAGE
-      }));
-    });
+
+    dispatch(action);
+
+    return fetch(getUrl(POKEAPI_POKEDEX_URL))
+      .then((response) => response.json())
+      .then((data) => {
+        let action = setStatus({
+          status: statusConstants.NULL_STATUS
+        });
+
+        dispatch(action);
+        dispatch(fetchPokedexSuccess(data));
+
+      })
+      .catch((error) => {
+        let action = setStatus({
+          status: statusConstants.NETWORK_ERROR,
+          message: statusConstants.NETWORK_ERROR_MESSAGE
+        });
+
+        dispatch(action);
+
+      });
   }
 }
