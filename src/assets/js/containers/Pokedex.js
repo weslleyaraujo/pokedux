@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as pokemonsActions from '../actions/pokemons';
+import PokedexItem from '../components/PokedexItem';
 
 function mapStateToProps({ pokedex }) {
   return {
@@ -15,14 +16,6 @@ function mapDispatchToProps(dispatch) {
     actions: bindActionCreators(pokemonsActions, dispatch)
   }
 }
-
-const PokedexItem = ({
-  name
-}) => (
-  <li>
-    {name}
-  </li>
-);
 
 class Pokedex extends Component {
 
