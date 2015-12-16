@@ -1,6 +1,6 @@
 import { POKEMON_IMAGE_URL } from '../constants/services';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   name: '',
   resource_uri: '',
   image: ''
@@ -13,7 +13,7 @@ export function getPokeId(uri) {
     .reduce((c, n) => c = !n ? c : n, '');
 }
 
-export default function pokemon (state = INITIAL_STATE, action) {
+export function pokemon (state = INITIAL_STATE, action) {
   if (!action) {
     let id = getPokeId(state.resource_uri)
     return {
