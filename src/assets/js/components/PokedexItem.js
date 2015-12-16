@@ -1,10 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const PokedexItem = ({
-  name
+  name,
+  id
 }) => (
   <li>
-    {name}
+    <Link to={`/pokemon/${id}`}>{name}</Link>
   </li>
 );
 

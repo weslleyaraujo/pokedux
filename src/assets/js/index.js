@@ -12,7 +12,7 @@ let history = createHashHistory({
 
 import App from './containers/App';
 import Pokedex from './containers/Pokedex';
-import Pokemon from './components/Pokemon';
+import Pokemon from './containers/Pokemon';
 import configureStore from './store/configureStore';
 
 let store = configureStore();
@@ -23,9 +23,8 @@ render(
       <Router history={history}>
         <ReduxRouter>
           <Route path="/" component={App}>
-            <Route path="pokedex" component={Pokedex}>
-              <Route path="pokemon" component={Pokemon} />
-            </Route>
+            <Route path="pokedex" component={Pokedex} />
+            <Route path="/pokemon/:id" component={Pokemon} />
           </Route>
         </ReduxRouter>
       </Router>

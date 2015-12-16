@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -34,7 +34,12 @@ class Pokedex extends Component {
       </ul>
     );
   }
-}
+};
+
+Pokedex.propTypes = {
+  pokemons: PropTypes.array.isRequired,
+  actions: PropTypes.object.isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokedex);
 

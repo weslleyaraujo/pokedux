@@ -32,7 +32,7 @@ class App extends Component {
 
 }
 
-App.proptypes = {
+App.propTypes = {
   status: PropTypes.object.isRequired,
 };
 
