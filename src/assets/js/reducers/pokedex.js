@@ -4,13 +4,17 @@ import {
   FETCH_POKEDEX_ERROR,
 } from '../constants/actionTypes';
 
-import pokemon from './pokemon';
+import { pokemon } from './pokemon';
 
-const INITIAL_STATE = {
+export const INITIAL_STATE = {
   pokemons: []
 };
 
-export default function pokedex(state = INITIAL_STATE, action) {
+export function pokedex(state = INITIAL_STATE, action) {
+  if (!action) {
+    return state;
+  }
+
   switch (action.type) {
     case FETCH_POKEDEX_SUCCESS:
       let { objects } = action.data;
