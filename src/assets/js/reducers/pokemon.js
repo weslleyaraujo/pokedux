@@ -10,21 +10,22 @@ export const INITIAL_STATE = {
 };
 
 export function pokemon (state = INITIAL_STATE, action) {
-  let id = getPokemonId(state.resource_uri)
-  if (!action) {
-    return {
-      ...state,
-      image: `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}${id}.png`,
-      id,
-    }
-  }
+  let id = getPokemonId(state.resource_uri);
+  let image = `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}${id}.png`;
 
   switch(action.type) {
     case actionTypes.FETCH_POKEMON_SUCCESS:
       return {
         ...state,
         ...action.data,
-        image: `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}${id}.png`,
+        image,
+        id,
+      }
+
+    case actionTypes.POKEMON_UPDATE:
+      return {
+        ...state,
+        image,
         id,
       }
 

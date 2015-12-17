@@ -6,7 +6,9 @@ describe('#reducers/pokedex', () => {
 
   describe('#pokedex', () => {
     it('returns the default pokedex',() => {
-      let result = pokedex(INITIAL_STATE, undefined);
+      let result = pokedex(INITIAL_STATE, {
+        type: 'SOME_UNKNOW_ACTION'
+      });
       expect(result).to.equal(INITIAL_STATE);
     });
 
