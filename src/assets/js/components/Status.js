@@ -1,19 +1,16 @@
 import React from 'react';
 import * as statusConstans from '../constants/status';
+import styles from '../../css/components/Status.css'
 
 // TODO: remove me, just to see how its going to work on screen
 let style = {
-  position: 'fixed',
-  top: '0',
-  left: '0',
-  width: '100%'
 };
 
 const Status = ({
   status,
   message
 }) => (
-  <div style={{ style }}>
+  <div className={styles.root}>
     {status} - {message}
   </div>
 );
