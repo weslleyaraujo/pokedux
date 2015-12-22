@@ -2,7 +2,9 @@ import path from 'path';
 import webpack, { HotModuleReplacementPlugin } from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
+import vars from 'postcss-simple-vars';
 
+import cssConfig from './src/assets/css/config';
 const filename = 'bundle.js';
 const publicPath = '/static/';
 
@@ -48,6 +50,11 @@ export default {
 
   postcss: [
     autoprefixer(),
+    vars({
+      variables: () => {
+        return cssConfig;
+      }
+    })
   ],
 
   devServer: {

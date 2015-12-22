@@ -1,5 +1,5 @@
 .root {
-  background-color: purple;
+  background-color: $another;
   left: 0;
   position: fixed;
   top: 0;
