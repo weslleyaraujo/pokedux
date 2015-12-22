@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { NULL_STATUS } from '../../constants/status';
+import fetch from 'isomorphic-fetch';
+import { polyfill } from 'es6-promise';
+
 import styles from './index.css';
 
 import pikachu from './images/01.gif';
@@ -9,38 +11,68 @@ import another from './images/03.gif';
 const images = [
   pikachu,
   other,
-  another
+  another,
 ];
 
-function singlePreload(src, key, onLoad) {
-  return (
-    <img
-      key={key}
-      onLoad={onLoad}
-      style={{
-        display: 'none'
-      }}
-     />
-  );
+function singlePreload(src) {
+  return new Promise((resolve, reject) => {
+    fetch(src)
+      .then(resolve)
+      .catch(reject);
+  });
 }
 
 class Status extends Component {
+  constructor(props) {
+    super(props);
 
-  preLoadImages() {
-    return images.map((x, i) => singlePreload(x, i, (e) => console.log(e)));
+    this.state = {
+      images,
+      loaded: false
+    }
   }
 
-  componendDidMount() {
-  
+  componentDidMount() {
+    let promises = this.state.images.map((x) => singlePreload(x));
+
+    Promise.all(promises)
+      .then(::this.onLoadImages);
+  }
+
+  onFailImage() {
+    console.log('whoops, some image failed');
+  }
+
+  onLoadImages(events) {
+    this.setState({
+      loaded: true
+    });
+  }
+
+  renderImage() {
+    let { images  } = this.state;
+    let src = images[0];
+
+    return (
+      <img
+        src={src}
+      />
+    );
   }
 
   render() {
-    const className = status === NULL_STATUS ? styles.common : styles.active;
+    const className = !status ? styles.common : styles.active;
     const { message } = this.props;
+    const { loaded } = this.state;
+
+    console.log(className, status);
+
     return (
       <div className={className} >
         {message && <p>{message}</p>}
-        {this.preLoadImages()}
+        <div>
+          { loaded ? this.renderImage() : '' }
+        </div>
       </div>
     );
   }
