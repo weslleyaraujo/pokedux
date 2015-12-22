@@ -1,6 +1,7 @@
 import path from 'path';
 import webpack, { HotModuleReplacementPlugin } from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
+import autoprefixer from 'autoprefixer';
 
 const filename = 'bundle.js';
 const publicPath = '/static/';
@@ -35,13 +36,18 @@ export default {
         include: path.join(__dirname, 'src')
       },
       {
-        test: /\.css$/, loader: ExtractTextPlugin.extract('style-loader', 'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss-loader')
+        test: /\.css$/,
+        loaders: [
+          'style?singleton',
+          'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]',
+          'postcss'
+        ]
       }
     ]
   },
 
   postcss: [
-    require('autoprefixer-core'),
+    autoprefixer(),
   ],
 
   devServer: {
