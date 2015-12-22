@@ -2,8 +2,8 @@ import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as pokemonsActions from '../actions/pokemons';
-import PokedexItem from '../components/PokedexItem';
+import * as pokemonsActions from '../../actions/pokemons';
+import PokedexItem from '../../components/PokedexItem';
 
 function mapStateToProps({ pokedex }) {
   return {

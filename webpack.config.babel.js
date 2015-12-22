@@ -4,7 +4,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import vars from 'postcss-simple-vars';
 
-import cssConfig from './src/assets/css/config';
+import cssConfig from './src/css-config';
 const filename = 'bundle.js';
 const publicPath = '/static/';
 
@@ -14,11 +14,11 @@ export default {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './src/assets/js/index'
+    './src/index'
   ],
 
   output: {
-    path: path.join(__dirname, 'dist/assets/js'),
+    path: path.join(__dirname, 'dist'),
     filename,
     publicPath
   },

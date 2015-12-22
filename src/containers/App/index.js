@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
 
-import Status from '../components/Status'
+import Status from '../../components/Status'
 
 function mapStateToProps({ status }) {
   return {
@@ -19,10 +19,10 @@ class App extends Component {
       <div>
         <Status {...status} />
         <header>
-          <h1>Pokedux :)</h1>
+          <h1>Pokedux</h1>
+          <h2>A study case built with redux!</h2>
         </header>
-          {this.props.children}
-          <Link to="pokedex">Take a look into the pokedex!</Link>
+        {this.props.children || <Link to="pokedex">Take a look into the pokedex!</Link>}
         <footer>
           <small>just learning some redux</small>
         </footer>
