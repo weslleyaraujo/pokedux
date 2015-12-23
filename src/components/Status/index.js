@@ -4,7 +4,7 @@ import { polyfill } from 'es6-promise';
 import { random, times } from 'lodash';
 
 import styles from './index.css';
-import { NULL_STATUS } from '../../constants/status'
+import { NULL_STATUS, NETWORK_ERROR } from '../../constants/status'
 
 // TODO: update to something more smart than this.
 const images = times(4).map((x) => require(`./images/0${x}.gif`));
@@ -52,21 +52,25 @@ class Status extends Component {
     let { images, actual  } = this.state;
     let src = images[actual];
 
-    return (
-      <img src={src} />
-    );
+    return (<img src={src} />);
+  }
+
+  shouldShowImage() {
+    const { loaded } = this.state;
+    const { status } = this.props;
+
+    return loaded && status !== NETWORK_ERROR;
   }
 
   render() {
     const { message, status } = this.props;
-    const { loaded } = this.state;
     const className = status !== NULL_STATUS ? styles.active : styles.common;
 
     return (
       <div className={className} >
         {message && <p>{message}</p>}
         <div>
-          {loaded ? this.renderImage() : ''}
+          {this.shouldShowImage() && this.renderImage()}
         </div>
       </div>
     );
