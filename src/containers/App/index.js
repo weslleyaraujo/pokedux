@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
-import styles from './index.css';
+import { AppBar, FontIcon } from 'material-ui';
 
 import Status from '../../components/Status'
 
@@ -17,7 +17,14 @@ class App extends Component {
   render() {
     let { status } = this.props;
     return (
-      <div className={styles.root}>
+      <div>
+        <AppBar 
+          iconElementLeft={<FontIcon className="muidocs-icon-action-home" />}
+          title={<span style={{ fontWeight: 300 }}>pokedux</span>}>
+        </AppBar>
+
+        <FontIcon className="muidocs-icon-action-home" />
+
         <Status {...status} />
         <header>
           <h1>Pokedux</h1>
