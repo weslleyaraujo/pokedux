@@ -21,7 +21,6 @@ class Pokemon extends Component {
   componentDidMount() {
     let { id } = this.props.params;
     let { actions } = this.props;
-    console.log('did mount', this.props.pokemon);
     actions.fetchPokemon({ id });
   }
 
