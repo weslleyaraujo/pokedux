@@ -2,6 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
+import styles from './index.css';
 
 import Status from '../../components/Status'
 
@@ -16,7 +17,7 @@ class App extends Component {
   render() {
     let { status } = this.props;
     return (
-      <div>
+      <div className={styles.root}>
         <Status {...status} />
         <header>
           <h1>Pokedux</h1>

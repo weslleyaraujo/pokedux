@@ -24,7 +24,7 @@ export default {
   },
 
   plugins: [
-    new ExtractTextPlugin('style.css', {
+    new ExtractTextPlugin(`${publicPath}/style.css`, {
       allChunks: true
     }),
     new HotModuleReplacementPlugin()

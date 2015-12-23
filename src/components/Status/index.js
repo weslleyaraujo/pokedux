@@ -64,7 +64,7 @@ class Status extends Component {
 
   render() {
     const { message, status } = this.props;
-    const className = status !== NULL_STATUS ? styles.active : styles.common;
+    const className = status !== NULL_STATUS ? styles.active : styles.root;
 
     return (
       <div className={className} >

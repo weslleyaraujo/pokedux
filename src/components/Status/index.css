@@ -1,4 +1,4 @@
-.common {
+.root {
   left: 0;
   top: 0;
   position: fixed;
@@ -7,11 +7,11 @@
   overflow: hidden;
 }
 
-.common :global p {
+.root :global p {
   margin: 0;
 }
 
-.common :global img {
+.root :global img {
   width: 150px;
   position: absolute;
   top: 50%;
@@ -20,7 +20,7 @@
 }
 
 .active {
-  composes: common;
+  composes: root;
   background-color: red;
   width: 100%;
   height: 100%
