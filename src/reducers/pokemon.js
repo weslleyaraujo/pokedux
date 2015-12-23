@@ -11,7 +11,7 @@ export const INITIAL_STATE = {
 
 export function pokemon (state = INITIAL_STATE, action) {
   let id = getPokemonId(state.resource_uri);
-  let image = `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}${id}.png`;
+  let image = `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}`;
 
   switch(action.type) {
     case actionTypes.FETCH_POKEMON_SUCCESS:

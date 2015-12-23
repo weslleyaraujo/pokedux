@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 
 import * as pokemonActions from '../../actions/pokemon';
 
@@ -26,10 +27,12 @@ class Pokemon extends Component {
 
   render() {
     let { name, image } = this.props.pokemon;
+    let { id } = this.props.params;
     return (
       <div>
         Hey there from pokemon! {name} 
-        <img src={image} alt={name} />
+        <img src={`${image}${id}.png`} alt={name} />
+        <Link to="pokedex">Go back</Link>
       </div>
     );
   }
