@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { List } from 'material-ui';
 
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexItem from '../../components/PokedexItem';
-import styles from './index.css';
 
 function mapStateToProps({ pokedex }) {
   return {
@@ -28,11 +28,11 @@ class Pokedex extends Component {
   render() {
     let { pokemons } = this.props;
     return (
-      <ul className={styles.root}>
+      <List>
         {pokemons.map((pokemon, i) => {
           return (<PokedexItem key={i} {...pokemon} />);
         })}
-      </ul>
+      </List>
     );
   }
 };

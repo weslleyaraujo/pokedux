@@ -2,7 +2,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
-import { AppBar, FontIcon } from 'material-ui';
+import { AppBar, FontIcon, RaisedButton, Paper } from 'material-ui';
 
 import Status from '../../components/Status'
 
@@ -18,22 +18,23 @@ class App extends Component {
     let { status } = this.props;
     return (
       <div>
-        <AppBar 
-          iconElementLeft={<FontIcon className="muidocs-icon-action-home" />}
-          title={<span style={{ fontWeight: 300 }}>pokedux</span>}>
-        </AppBar>
+        <header>
+          <AppBar 
+            iconElementLeft={<FontIcon className="muidocs-icon-action-home" />}
+            title={<span style={{ fontWeight: 300 }}>pokedux</span>}>
+          </AppBar>
+        </header>
 
-        <FontIcon className="muidocs-icon-action-home" />
+        <Paper style={{ padding: '20px', textAlign: 'center' }}>
+          <p> Ipsum dolor ipsa ut ex tempore reprehenderit ut natus? Excepturi.  </p>
+          {this.props.children || <RaisedButton label="Visit Pokedex" secondary={true} />}
+        </Paper>
 
         <Status {...status} />
-        <header>
-          <h1>Pokedux</h1>
-          <h2>A study case built with redux!</h2>
-        </header>
-        {this.props.children || <Link to="pokedex">Take a look into the pokedex!</Link>}
-        <footer>
+
+        <Paper style={{ marginTop: '20px', padding: '20px' }}>
           <small>just learning some redux</small>
-        </footer>
+        </Paper>
       </div>
     );
   }
