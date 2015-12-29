@@ -1,10 +1,20 @@
 import { Styles } from 'material-ui';
 
-const {
-  red500
-} = Styles.Colors;
+import addNamespace from './helpers/add-namespace';
+
+// Z-index
+const index = {
+  Status: 50,
+  PokeBallLine: 40
+};
+
+// Colors
+const colors = {
+  red500: Styles.Colors.red500,
+  white: '#FFF'
+}
 
 export default {
-  red500,
-  white: '#FFF'
+  ...addNamespace(index, 'z-index'),
+  ...addNamespace(colors, 'colors')
 }

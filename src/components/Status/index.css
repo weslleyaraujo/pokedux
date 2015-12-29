@@ -5,6 +5,7 @@
   width: 0;
   height: 0;
   overflow: hidden;
+  z-index: $z-index--Status;
 }
 
 .root :global p {

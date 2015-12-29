@@ -1,3 +1,6 @@
+$circle--outer: 100px;
+$circle--inner: 30px;
+
 .root {
   position: fixed;
   top: 0;
@@ -6,7 +9,7 @@
   height: 100%;
   z-index: 10;
   font-weight: 300;
-  color: $white;
+  color: $colors--white;
 }
 
 :global .page-transition-leave {
@@ -43,13 +46,13 @@
 .downside {
   composes: item;
   bottom: 0;
-  background-color: grey;
+  background-color: $colors--white;
 }
 
 .upside {
   composes: item;
   top: 0;
-  background-color: $red500;
+  background-color: $colors--red500;
   transition: .5s;
 }
 
@@ -59,6 +62,7 @@
   width: 100%;
   background-color: black;
   bottom: -2.5vh;
+  z-index: $z-index--PokeBallLine;
 }
 
 .circle {
@@ -68,24 +72,30 @@
   position: absolute;
   top: 50%;
   left: 50%;
+  transition: 0.2s;
   transform: translate(-50%, -50%);
 }
 
 .outer {
   composes: circle;
   border: 2.5vh solid black;
-  width: 100px;
-  height: 100px;
-  background-color: $white;
+  width: $circle--outer;
+  height: $circle--outer;
+  background-color: $colors--white;
+  &:hover {
+    width: calc($circle--outer + 10px);
+    height: calc($circle--outer + 10px);
+    :local .inner {
+      width: calc($circle--outer - 30px);
+      height: calc($circle--outer - 30px);
+    }
+  }
 }
 
 .inner {
   composes: circle;
   background-color: black;
-  width: 30px;
-  height: 30px;
-  &:hover {
-    background-color: red;
-  }
+  width: $circle--inner;
+  height: $circle--inner;
 }
 
