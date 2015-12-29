@@ -13,7 +13,7 @@ const Header = ({
         paddingLeft: 60
       }}
       iconElementLeft={
-        <a href="#" onClick={navigate.bind(null, history, '/')}>
+        <a href="#" onClick={navigate(history, '/')}>
           <Pokeball
             style={{
               position: 'absolute',
