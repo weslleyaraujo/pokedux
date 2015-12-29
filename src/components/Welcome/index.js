@@ -1,18 +1,25 @@
 import React from 'react';
 
-import styles from './index.css';
+import styles from './Welcome.css';
+import navigate from '../../helpers/navigate';
 
-const Welcome = () => (
-  <div className={styles.root}>
-    <div className={styles.upside}>
-      <h1>Pokedux</h1>
-      <div className={styles.line}>
-        <button className={styles.outer}>
-          <div className={styles.inner}></div>
-        </button>
+const Welcome = ({
+  history
+}) => (
+  <div>
+    <div className={styles.root}>
+      <div className={styles.upside}>
+        <h1>pokedux</h1>
+        <p>Pokedex App built with React and Redux.</p>
+        <div className={styles.line}>
+          <button className={styles.outer}
+            onClick={navigate(history, '/pokedex')}>
+            <div className={styles.inner}></div>
+          </button>
+        </div>
       </div>
-    </div>
-    <div className={styles.item}>
+      <div className={styles.downside}>
+      </div>
     </div>
   </div>
 );
