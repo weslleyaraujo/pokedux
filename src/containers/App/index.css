@@ -1,12 +1,4 @@
-:root {
-  background: linear-gradient(
-    to bottom,
-    $softPrimary,
-    $softPrimary 50%,
-    $strongPrimary 50%,
-    $strongPrimary
-  );
-  background-size: 100% 20px;
-  font-family: monospace;
-  color: #FFF;
+body {
+  margin: 0;
+  paddgin: 0;
 }

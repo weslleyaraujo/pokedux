@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { List } from 'material-ui';
+import { GridList } from 'material-ui';
 
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexItem from '../../components/PokedexItem';
@@ -18,6 +18,12 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
+const gridStyles = {
+  width: 560,
+  overflowY: 'auto',
+  margin: '0 auto'
+};
+
 class Pokedex extends Component {
 
   componentDidMount() {
@@ -28,11 +34,16 @@ class Pokedex extends Component {
   render() {
     let { pokemons } = this.props;
     return (
-      <List>
+      <GridList
+        cols={4}
+        cellWidth={140}
+        cellHeight={140}
+        style={gridStyles}
+          >
         {pokemons.map((pokemon, i) => {
           return (<PokedexItem key={i} {...pokemon} />);
         })}
-      </List>
+      </GridList>
     );
   }
 };

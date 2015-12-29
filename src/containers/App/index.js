@@ -5,6 +5,7 @@ import { AppBar, FontIcon, RaisedButton, Paper } from 'material-ui';
 
 import Status from '../../components/Status';
 import navigate from '../../helpers/navigate';
+import styles from './index.css';
 
 function mapStateToProps({ status }) {
   return {
@@ -17,7 +18,7 @@ class App extends Component {
   render() {
     let { status, history } = this.props;
     return (
-      <div>
+      <div className={styles.root}>
         <header>
           <AppBar 
             iconElementLeft={<FontIcon className="muidocs-icon-action-home" />}

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { ListItem, Avatar, Menu, MenuItem, rightIconMenu } from 'material-ui';
+import { GridTile } from 'material-ui';
+
+const gradientBg = 'rgba(0, 0, 0, 0.4)';
 
 // <Link to={`/pokemon/${id}`}>{name}</Link>
 
@@ -9,10 +11,12 @@ const PokedexItem = ({
   name,
   id,
 }) => (
-  <ListItem
-    rightIconButton={rightIconMenu}
-    leftAvatar={<Avatar src={`${image}${id}.png`}/>}
-    primaryText={name} />
+  <GridTile
+    title={name}
+    titleBackground={gradientBg}
+  >
+    <img src={`${image}${id}.png`} />
+  </GridTile>
 );
 
 export default PokedexItem;
