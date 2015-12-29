@@ -34,16 +34,18 @@ class Pokedex extends Component {
   render() {
     let { pokemons } = this.props;
     return (
-      <GridList
-        cols={4}
-        cellWidth={140}
-        cellHeight={140}
-        style={gridStyles}
-          >
-        {pokemons.map((pokemon, i) => {
-          return (<PokedexItem key={i} {...pokemon} />);
-        })}
-      </GridList>
+      <div>
+        <GridList
+          cols={4}
+          cellWidth={140}
+          cellHeight={140}
+          style={gridStyles}
+            >
+          {pokemons.map((pokemon, i) => {
+            return (<PokedexItem key={i} {...pokemon} />);
+          })}
+        </GridList>
+      </div>
     );
   }
 };

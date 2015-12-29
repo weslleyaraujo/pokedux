@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from 'react';
+import React, { Component, PropTypes, cloneElement } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { AppBar, FontIcon, RaisedButton, Paper, Tabs, Tab } from 'material-ui';
+import { Paper } from 'material-ui';
 
 import Status from '../../components/Status';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../../components/Welcome';
-import navigate from '../../helpers/navigate';
-import styles from './index.css';
+import styles from './App.css';
 
 function mapStateToProps({ status }) {
   return {
@@ -16,10 +16,14 @@ function mapStateToProps({ status }) {
   }
 }
 
+// TODO: Re-add status componenet
+// <Status {...status} />
 class App extends Component {
 
   render() {
     let { status, history } = this.props;
+    let { pathname } = this.props.location;
+
     return (
       <Paper className={styles.root}>
         <Header history={history}/>
@@ -29,10 +33,15 @@ class App extends Component {
           textAlign: 'center',
           minHeight: '30vh'
         }}>
-          {this.props.children || <Welcome />}
-        </Paper>
+          <ReactCSSTransitionGroup
+            transitionEnterTimeout={100}
+            transitionLeaveTimeout={100}
+            component="div"
+            transitionName="page-transition">
+              {cloneElement(this.props.children || <Welcome history={history}/>, { key: pathname })}
+          </ReactCSSTransitionGroup>
 
-        <Status {...status} />
+        </Paper>
 
         <Footer />
 
