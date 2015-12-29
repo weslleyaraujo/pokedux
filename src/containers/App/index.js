@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Router, Route } from 'react-router';
 import { Link } from 'react-router';
 import { AppBar, FontIcon, RaisedButton, Paper } from 'material-ui';
 
-import Status from '../../components/Status'
+import Status from '../../components/Status';
+import navigate from '../../helpers/navigate';
 
 function mapStateToProps({ status }) {
   return {
@@ -15,7 +15,7 @@ function mapStateToProps({ status }) {
 class App extends Component {
 
   render() {
-    let { status } = this.props;
+    let { status, history } = this.props;
     return (
       <div>
         <header>
@@ -27,7 +27,7 @@ class App extends Component {
 
         <Paper style={{ padding: '20px', textAlign: 'center' }}>
           <p> Ipsum dolor ipsa ut ex tempore reprehenderit ut natus? Excepturi.  </p>
-          {this.props.children || <RaisedButton label="Visit Pokedex" secondary={true} />}
+          {this.props.children || <RaisedButton label="Visit Pokedex" secondary={true} onClick={navigate.bind(null, history, 'pokedex')}/>}
         </Paper>
 
         <Status {...status} />
