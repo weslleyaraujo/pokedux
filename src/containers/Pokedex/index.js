@@ -19,7 +19,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 const gridStyles = {
-  width: 560,
+  maxWidth: 560,
   overflowY: 'auto',
   margin: '0 auto'
 };

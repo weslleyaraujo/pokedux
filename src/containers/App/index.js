@@ -1,26 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { AppBar, FontIcon, RaisedButton, Paper, Tabs, Tab, Styles } from 'material-ui';
-
-console.log(Styles);
+import { AppBar, FontIcon, RaisedButton, Paper, Tabs, Tab } from 'material-ui';
 
 import Status from '../../components/Status';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import navigate from '../../helpers/navigate';
 import styles from './index.css';
-import pokeballSrc from './images/pokeball.png';
-
-const pokeIcon = (
-  <img src={pokeballSrc}
-      width={30}
-      height={30}
-      style={{
-        position: 'absolute',
-        left: 10,
-        top: 19,
-      }}
-    />
-);
 
 function mapStateToProps({ status }) {
   return {
@@ -30,40 +17,38 @@ function mapStateToProps({ status }) {
 
 class App extends Component {
 
+  renderContent() {
+    let { history } = this.props;
+    return (
+        <div>
+          <p>Pokedux is an open source project created with studies motives. </p>
+          <p>It uses the <a href="http://pokeapi.co" target="_blank">PokeAPI</a> in order to fetch all the data, and it was build </p>
+          <p>using top technologies such as <a href="#">React</a>/<a href="#">Redux.</a> and a bunch of awesome stuff.</p>
+          <p>All the code is hosted at Github, feel free to use it! </p>
+          <RaisedButton label="FULL POKEDEX" secondary={true} onClick={navigate.bind(null, history, 'pokedex')}/>
+        </div>
+    );
+  }
+
   render() {
     let { status, history } = this.props;
     return (
-      <div style={Styles.Typography}>
-        <header className={styles.header}>
-          <AppBar 
-            style={{
-              paddingLeft: 60
-            }}
-            iconElementLeft={<a href="#" onClick={navigate.bind(null, history, '/')}>{pokeIcon}</a>}
-            title={<span style={{ fontWeight: 300 }}>pokedux</span>}>
+      <Paper className={styles.root}>
+        <Header history={history}/>
 
-            <Tabs>
-              <Tab route="/pokedex" label="FULL POKEDEX" />
-              <Tab route="/example"label="SEARCH POKEMON" >eae </Tab>
-            </Tabs>
-
-          </AppBar>
-        </header>
-
-        <Paper style={{ padding: '20px', textAlign: 'center' }}>
-          {this.props.children ||
-
-            <RaisedButton label="Visit Pokedex" secondary={true} onClick={navigate.bind(null, history, 'pokedex')}/>
-          }
+        <Paper style={{
+          padding: '20px',
+          textAlign: 'center',
+          minHeight: '30vh'
+        }}>
+          {this.props.children || this.renderContent()}
         </Paper>
-
 
         <Status {...status} />
 
-        <div>
-          <small>Open source project hosted at Github - @weslleyaraujo</small>
-        </div>
-      </div>
+        <Footer />
+
+      </Paper>
     );
   }
 
