@@ -2,9 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 import { GridTile } from 'material-ui';
 
+// TODO: use a css-config variable instead
 const gradientBg = 'rgba(0, 0, 0, 0.4)';
-
-// <Link to={`/pokemon/${id}`}>{name}</Link>
 
 const PokedexItem = ({
   image,
