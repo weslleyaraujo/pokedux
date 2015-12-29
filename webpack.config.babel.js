@@ -2,6 +2,7 @@ import path from 'path';
 import webpack, { HotModuleReplacementPlugin } from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import autoprefixer from 'autoprefixer';
+import nesting from 'postcss-nesting';
 import vars from 'postcss-simple-vars';
 
 import cssConfig from './src/css-config';
@@ -59,11 +60,12 @@ export default {
 
   postcss: [
     autoprefixer(),
+    nesting(),
     vars({
       variables: () => {
         return cssConfig;
       }
-    })
+    }),
   ],
 
   devServer: {

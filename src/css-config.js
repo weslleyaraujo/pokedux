@@ -1,6 +1,10 @@
-const cssConfig = {
-  softPrimary: '#3050d0',
-  strongPrimary: '#1028a8'
-};
+import { Styles } from 'material-ui';
 
-export default cssConfig;
+const {
+  red500
+} = Styles.Colors;
+
+export default {
+  red500,
+  white: '#FFF'
+}

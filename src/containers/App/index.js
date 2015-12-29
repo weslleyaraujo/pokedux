@@ -6,6 +6,7 @@ import { AppBar, FontIcon, RaisedButton, Paper, Tabs, Tab } from 'material-ui';
 import Status from '../../components/Status';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import Welcome from '../../components/Welcome';
 import navigate from '../../helpers/navigate';
 import styles from './index.css';
 
@@ -16,19 +17,6 @@ function mapStateToProps({ status }) {
 }
 
 class App extends Component {
-
-  renderContent() {
-    let { history } = this.props;
-    return (
-        <div>
-          <p>Pokedux is an open source project created with studies motives. </p>
-          <p>It uses the <a href="http://pokeapi.co" target="_blank">PokeAPI</a> in order to fetch all the data, and it was build </p>
-          <p>using top technologies such as <a href="#">React</a>/<a href="#">Redux.</a> and a bunch of awesome stuff.</p>
-          <p>All the code is hosted at Github, feel free to use it! </p>
-          <RaisedButton label="FULL POKEDEX" secondary={true} onClick={navigate.bind(null, history, 'pokedex')}/>
-        </div>
-    );
-  }
 
   render() {
     let { status, history } = this.props;
@@ -41,7 +29,7 @@ class App extends Component {
           textAlign: 'center',
           minHeight: '30vh'
         }}>
-          {this.props.children || this.renderContent()}
+          {this.props.children || <Welcome />}
         </Paper>
 
         <Status {...status} />
