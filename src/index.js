@@ -30,7 +30,7 @@ render(
       </Router>
     </Provider>
 
-    <DebugPanel bottom left>
+    <DebugPanel top right bottom>
       <DevTools store={store} monitor={LogMonitor} />
     </DebugPanel>
   </div>,
