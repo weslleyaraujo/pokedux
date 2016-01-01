@@ -8,6 +8,7 @@ import Status from '../../components/Status';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Welcome from '../../components/Welcome';
+import { GITHUB_REPO_URL, TWITTER_PROFILE_URL, TWITTER_PROFILE } from '../../constants/appConfig';
 import styles from './App.css';
 
 function mapStateToProps({ status }) {
@@ -39,7 +40,10 @@ class App extends Component {
           </ReactCSSTransitionGroup>
           <Status {...status} />
         </Paper>
-        <Footer />
+        <Footer
+          github={GITHUB_REPO_URL}
+          twitterUrl={TWITTER_PROFILE_URL}
+          twitterUsername={TWITTER_PROFILE}/>
       </Paper>
     );
   }
