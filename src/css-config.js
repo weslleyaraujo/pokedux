@@ -11,6 +11,7 @@ const index = {
 // Colors
 const colors = {
   red500: Styles.Colors.red500,
+  blueA400: Styles.Colors.blueA400,
   white: '#FFF'
 }
 
