@@ -5,7 +5,7 @@ import * as actionTypes from '../constants/actionTypes'
 import * as statusConstants from '../constants/status';
 import { setStatus } from './status';
 import { POKEAPI_POKEMON_URL } from '../constants/services';
-import getPokeApiUrl from '../helpers/get-pokeapi-url';
+import getApi from '../helpers/get-api';
 
 export function fetchPokemonSuccess(data) {
   return {
@@ -17,6 +17,7 @@ export function fetchPokemonSuccess(data) {
 export function fetchPokemon(data) {
   return dispatch => {
     let { id } = data;
+    let url = `${getApi(POKEAPI_POKEMON_URL)}${id}`;
     let action = setStatus({
       status: statusConstants.LOADING_STATUS,
       message: statusConstants.LOADING_STATUS_MESSAGE
@@ -24,7 +25,7 @@ export function fetchPokemon(data) {
 
     dispatch(action);
 
-    return fetch(`${getPokeApiUrl(POKEAPI_POKEMON_URL)}${id}`)
+    return fetch(url)
       .then((response) => response.json())
       .then((data) => {
         let action = setStatus({
