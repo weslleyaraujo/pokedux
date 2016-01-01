@@ -1,0 +1,16 @@
+.root {
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  font-size: 20px;
+  font-weight: 300;
+  color: $colors--blueA400;
+}
+
+.root :global a {
+  color: $colors--blueA400;
+  text-decoration: none;
+}
+
