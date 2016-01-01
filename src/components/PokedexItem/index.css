@@ -1,9 +1,0 @@
-.root {
-  font-size: 20px;
-  text-transform: uppercase;
-}
-
-.root :global a {
-  text-decoration: none;
-  color: #606070;
-}

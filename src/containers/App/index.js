@@ -2,7 +2,9 @@ import React, { Component, PropTypes, cloneElement } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import { Paper } from 'material-ui';
+import { Paper, Styles } from 'material-ui';
+
+console.log(Styles);
 
 import Status from '../../components/Status';
 import Header from '../../components/Header';
@@ -34,8 +36,8 @@ class App extends Component {
           minHeight: '30vh'
         }}>
           <ReactCSSTransitionGroup
-            transitionEnterTimeout={100}
-            transitionLeaveTimeout={100}
+            transitionEnterTimeout={300}
+            transitionLeaveTimeout={300}
             component="div"
             transitionName="page-transition">
               {cloneElement(this.props.children || <Welcome history={history}/>, { key: pathname })}
@@ -44,7 +46,6 @@ class App extends Component {
         </Paper>
 
         <Footer />
-
       </Paper>
     );
   }

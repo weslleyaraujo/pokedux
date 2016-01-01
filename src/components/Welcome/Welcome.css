@@ -24,17 +24,6 @@ $circle--inner: 30px;
   }
 }
 
-:global .page-transition-leave {
-  :local .downside {
-    transform: translateY(100vh);
-  }
-}
-
-:global .page-transition-enter {
-  :local .downside {
-    transform: translateY(100vh);
-  }
-}
 
 .item {
   height: 50vh;

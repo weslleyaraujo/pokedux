@@ -41,9 +41,6 @@ class Pokedex extends Component {
           cellHeight={140}
           style={gridStyles}
             >
-          {pokemons.map((pokemon, i) => {
-            return (<PokedexItem key={i} {...pokemon} />);
-          })}
         </GridList>
       </div>
     );

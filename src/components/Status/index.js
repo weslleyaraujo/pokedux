@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 import { polyfill } from 'es6-promise';
 import { random, times } from 'lodash';
 
-import styles from './index.css';
+import styles from './Status.css';
 import { NULL_STATUS, NETWORK_ERROR } from '../../constants/status'
 
 // TODO: update to something more smart than this.
