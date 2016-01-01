@@ -66,29 +66,30 @@ describe('#actions/pokemon', () => {
       store.dispatch(pokemonActions.fetchPokemon({ id }));
     });
 
-    //it('dispatch listed actions whenever an error occurs.', (done) => {
-    //  nock(POKEAPI_ROOT_URL)
-    //    .get(`POKEAPI_POKEMON_URL/some-id`)
-    //    .replyWithError();
+    it('dispatch listed actions whenever an error occurs.', (done) => {
+      let id = 10;
+      nock(POKEAPI_ROOT_URL)
+        .get(`${POKEAPI_POKEMON_URL}${id}`)
+        .replyWithError();
 
-    //  const expectedActions = [
-    //    { type: actionTypes.SET_STATUS,
-    //      data: {
-    //        status: statusConstants.LOADING_STATUS,
-    //        message: statusConstants.LOADING_STATUS_MESSAGE
-    //      }
-    //    },
-    //    { type: actionTypes.SET_STATUS,
-    //      data: {
-    //        status: statusConstants.NETWORK_ERROR,
-    //        message: statusConstants.NETWORK_ERROR_MESSAGE
-    //      }
-    //    },
-    //  ];
+      const expectedActions = [
+        { type: actionTypes.SET_STATUS,
+          data: {
+            status: statusConstants.LOADING_STATUS,
+            message: statusConstants.LOADING_STATUS_MESSAGE
+          }
+        },
+        { type: actionTypes.SET_STATUS,
+          data: {
+            status: statusConstants.NETWORK_ERROR,
+            message: statusConstants.NETWORK_ERROR_MESSAGE
+          }
+        },
+      ];
 
-    //  const store = mockStore({}, expectedActions, done);
-    //  store.dispatch(pokemonActions.fetchPokemon());
-    //});
+      const store = mockStore({}, expectedActions, done);
+      store.dispatch(pokemonActions.fetchPokemon({ id }));
+    });
 
   });
 
