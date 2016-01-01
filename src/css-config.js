@@ -4,8 +4,9 @@ import addNamespace from './helpers/add-namespace';
 
 // Z-index
 const index = {
-  Status: 50,
-  PokeBallLine: 40
+  Welcome: 60,
+  PokeBallLine: 50,
+  Status: 40,
 };
 
 // Colors

@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { Paper, Styles } from 'material-ui';
 
-console.log(Styles);
-
 import Status from '../../components/Status';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -18,8 +16,6 @@ function mapStateToProps({ status }) {
   }
 }
 
-// TODO: Re-add status componenet
-// <Status {...status} />
 class App extends Component {
 
   render() {
@@ -29,7 +25,6 @@ class App extends Component {
     return (
       <Paper className={styles.root}>
         <Header history={history}/>
-
         <Paper style={{
           padding: '20px',
           textAlign: 'center',
@@ -42,9 +37,8 @@ class App extends Component {
             transitionName="page-transition">
               {cloneElement(this.props.children || <Welcome history={history}/>, { key: pathname })}
           </ReactCSSTransitionGroup>
-
+          <Status {...status} />
         </Paper>
-
         <Footer />
       </Paper>
     );
