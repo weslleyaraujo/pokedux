@@ -37,8 +37,9 @@ describe('#actions/pokemon', () => {
     });
 
     it('dispatch listed action after successfully get data from pokeapi.', (done) => {
+      let id = 10;
       nock(POKEAPI_ROOT_URL)
-        .get(`${POKEAPI_POKEMON_URL}/10`)
+        .get(`${POKEAPI_POKEMON_URL}${id}`)
         .reply(200, {});
 
       const expectedActions = [
@@ -62,7 +63,7 @@ describe('#actions/pokemon', () => {
       ];
 
       const store = mockStore({}, expectedActions, done);
-      store.dispatch(pokemonActions.fetchPokemon({ id: 10 }));
+      store.dispatch(pokemonActions.fetchPokemon({ id }));
     });
 
     //it('dispatch listed actions whenever an error occurs.', (done) => {
