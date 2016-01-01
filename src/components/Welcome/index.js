@@ -4,7 +4,8 @@ import styles from './Welcome.css';
 import navigate from '../../helpers/navigate';
 
 const Welcome = ({
-  history
+  history,
+  path
 }) => (
   <div>
     <div className={styles.root}>
@@ -13,7 +14,7 @@ const Welcome = ({
         <p>Pokedex App built with React and Redux.</p>
         <div className={styles.line}>
           <button className={styles.outer}
-            onClick={navigate(history, '/pokedex')}>
+            onClick={navigate(history, path)}>
             <div className={styles.inner}></div>
           </button>
         </div>

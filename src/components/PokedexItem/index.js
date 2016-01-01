@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 import { GridTile } from 'material-ui';
 
 // TODO: use a css-config variable instead

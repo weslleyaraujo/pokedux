@@ -5,7 +5,8 @@ import Pokeball from './Pokeball';
 import navigate from '../helpers/navigate';
 
 const Header = ({
-  history
+  history,
+  path
 }) => (
   <header>
     <AppBar 
@@ -13,7 +14,7 @@ const Header = ({
         paddingLeft: 60
       }}
       iconElementLeft={
-        <a href="#" onClick={navigate(history, '/')}>
+        <a href="#" onClick={navigate(history, path)}>
           <Pokeball
             style={{
               position: 'absolute',

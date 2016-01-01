@@ -1,8 +1,7 @@
 import React, { Component, PropTypes, cloneElement } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
-import { Paper, Styles } from 'material-ui';
+import { Paper } from 'material-ui';
 
 import Status from '../../components/Status';
 import Header from '../../components/Header';
@@ -25,7 +24,7 @@ class App extends Component {
 
     return (
       <Paper className={styles.root}>
-        <Header history={history}/>
+        <Header history={history} path="/"/>
         <Paper style={{
           padding: '20px',
           textAlign: 'center',
@@ -36,7 +35,7 @@ class App extends Component {
             transitionLeaveTimeout={300}
             component="div"
             transitionName="page-transition">
-              {cloneElement(this.props.children || <Welcome history={history}/>, { key: pathname })}
+              {cloneElement(this.props.children || <Welcome history={history} path='/pokedex'/>, { key: pathname })}
           </ReactCSSTransitionGroup>
           <Status {...status} />
         </Paper>

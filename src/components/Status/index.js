@@ -17,6 +17,7 @@ function singlePreload(src) {
   });
 }
 
+// TODO: handle 1 single image failed
 class Status extends Component {
 
   state = {
@@ -28,7 +29,8 @@ class Status extends Component {
   componentDidMount() {
     let promises = this.state.images.map((x) => singlePreload(x));
 
-    Promise.all(promises)
+    Promise
+      .all(promises)
       .then(::this.onImagesLoaded);
   }
 
@@ -39,6 +41,7 @@ class Status extends Component {
   }
 
   onFailImage() {
+    // TODO: handle all image failed
     console.log('whoops, some image failed');
   }
 
