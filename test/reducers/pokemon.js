@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { pokemon, INITIAL_STATE } from '../../src/assets/js/reducers/pokemon';
-import * as actionTypes from '../../src/assets/js/constants/actionTypes'
+import { pokemon, INITIAL_STATE } from '../../src/reducers/pokemon';
+import * as actionTypes from '../../src/constants/actionTypes'
 
 describe('#reducers/pokemon', () => {
 
@@ -37,7 +37,6 @@ describe('#reducers/pokemon', () => {
       });
 
       expect(result).to.have.property('image');
-      expect(result.image).to.contain(id);
       expect(result.name).to.equal(data.name);
     });
 

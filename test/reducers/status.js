@@ -1,6 +1,6 @@
 import { expect, use } from 'chai';
-import { status, INITIAL_STATE } from '../../src/assets/js/reducers/status';
-import * as actionTypes from '../../src/assets/js/constants/actionTypes'
+import { status, INITIAL_STATE } from '../../src/reducers/status';
+import * as actionTypes from '../../src/constants/actionTypes'
 
 describe('#reducers/status', () => {
 

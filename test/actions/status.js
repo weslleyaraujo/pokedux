@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import * as actionTypes from '../../src/assets/js/constants/actionTypes'
-import * as statusActions from '../../src/assets/js/actions/status';
+import * as actionTypes from '../../src/constants/actionTypes'
+import * as statusActions from '../../src/actions/status';
 
 describe('#actions/status', () => {
 

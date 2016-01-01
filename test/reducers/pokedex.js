@@ -1,6 +1,6 @@
 import { expect, use } from 'chai';
-import { pokedex, INITIAL_STATE } from '../../src/assets/js/reducers/pokedex';
-import * as actionTypes from '../../src/assets/js/constants/actionTypes'
+import { pokedex, INITIAL_STATE } from '../../src/reducers/pokedex';
+import * as actionTypes from '../../src/constants/actionTypes'
 
 describe('#reducers/pokedex', () => {
 

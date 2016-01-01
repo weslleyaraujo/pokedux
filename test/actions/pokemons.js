@@ -3,10 +3,10 @@ import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk';
 import nock from 'nock';
 
-import * as pokemonsActions from '../../src/assets/js/actions/pokemons';
-import * as actionTypes from '../../src/assets/js/constants/actionTypes'
-import * as statusConstants from '../../src/assets/js/constants/status';
-import { POKEAPI_ROOT_URL, POKEAPI_POKEDEX_URL } from '../../src/assets/js/constants/services';
+import * as pokemonsActions from '../../src/actions/pokemons';
+import * as actionTypes from '../../src/constants/actionTypes'
+import * as statusConstants from '../../src/constants/status';
+import { POKEAPI_ROOT_URL, POKEAPI_POKEDEX_URL } from '../../src/constants/services';
 
 const middlewares = [thunk];
 const mockStore = configureMockStore(middlewares)
