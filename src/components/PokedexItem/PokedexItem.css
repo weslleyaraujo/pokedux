@@ -1,0 +1,25 @@
+.root {
+  display: inline-block;
+  height: 100px;
+  float: left;
+  line-height: 100px;
+  width: 210px;
+  position: relative;
+  text-align: left;
+  box-sizing: border-box;
+  font-family: $font-family--default;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.root :global p {
+  margin: 0 10px;
+}
+
+.image {
+  width: 100px;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+

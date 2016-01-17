@@ -29,10 +29,6 @@ render(
         </ReduxRouter>
       </Router>
     </Provider>
-
-    <DebugPanel top right bottom>
-      <DevTools store={store} monitor={LogMonitor} />
-    </DebugPanel>
   </div>,
 
   document.querySelector('#app')

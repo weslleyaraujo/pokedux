@@ -5,6 +5,7 @@ import { GridList } from 'material-ui';
 
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexItem from '../../components/PokedexItem';
+import styles from './Pokedex.css';
 
 function mapStateToProps({ pokedex }) {
   return {
@@ -35,14 +36,9 @@ class Pokedex extends Component {
     let { pokemons } = this.props;
     return (
       <div>
-        <GridList
-          cols={4}
-          cellWidth={100}
-          cellHeight={100}
-          style={gridStyles}
-            >
-            {pokemons.map((p, i) => <PokedexItem key={i} {...p} />)}
-        </GridList>
+        <ul className={styles.list}>
+          {pokemons.map((p, i) => <PokedexItem key={i} {...p} />)}
+        </ul>
       </div>
     );
   }
