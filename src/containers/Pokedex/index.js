@@ -29,14 +29,10 @@ class Pokedex extends Component {
 
   renderItem(props) {
     let { id } = props;
-    let bgColor = getRandomColor();
-    let color = invertColor(bgColor);
     let path = `/pokemon/${id}`;
     let data = {
       ...props,
       id,
-      bgColor,
-      color,
       path,
     };
 
