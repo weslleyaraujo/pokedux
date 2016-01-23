@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { GridList } from 'material-ui';
 
+import { invertColor, getRandomColor } from '../../helpers/color-utils';
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexItem from '../../components/PokedexItem';
 import styles from './Pokedex.css';
@@ -19,12 +20,6 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-const gridStyles = {
-  maxWidth: 560,
-  overflowY: 'auto',
-  margin: '0 auto'
-};
-
 class Pokedex extends Component {
 
   componentDidMount() {
@@ -32,12 +27,17 @@ class Pokedex extends Component {
     actions.fetchPokedex();
   }
 
+  renderItem(props) {
+    const bgColor = getRandomColor();
+    return (<PokedexItem {...props} bgColor={bgColor} color={invertColor(bgColor)} />);
+  }
+
   render() {
     let { pokemons } = this.props;
     return (
       <div>
         <ul className={styles.list}>
-          {pokemons.map((p, i) => <PokedexItem key={i} {...p} />)}
+          {pokemons.map((p, i) => this.renderItem({...p, key: i}))}
         </ul>
       </div>
     );
