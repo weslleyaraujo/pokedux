@@ -1,20 +1,21 @@
-import React from 'react';
-import { GridTile } from 'material-ui';
-
-// TODO: use a css-config variable instead
-const gradientBg = 'rgba(0, 0, 0, 0.4)';
+import React, { Component } from 'react';
+import { Link } from 'react-router';
+import styles from './PokedexItem.css';
 
 const PokedexItem = ({
+  bgColor,
+  color,
   image,
   name,
   id,
+  path,
 }) => (
-  <GridTile
-    title={name}
-    titleBackground={gradientBg}
-  >
-    <img src={`${image}${id}.png`} />
-  </GridTile>
+  <li className={styles.root} style={{ backgroundColor: bgColor, color }}>
+    <Link to={path}>
+      <p>{name}</p>
+      <img className={styles.image} src={`${image}${id}.png`} />
+    </Link>
+  </li>
 );
 
 export default PokedexItem;

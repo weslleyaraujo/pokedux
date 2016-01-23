@@ -16,7 +16,12 @@ const colors = {
   white: '#FFF'
 }
 
+const fontFamily = {
+  default: Styles.LightRawTheme.fontFamily,
+};
+
 export default {
   ...addNamespace(index, 'z-index'),
-  ...addNamespace(colors, 'colors')
+  ...addNamespace(colors, 'colors'),
+  ...addNamespace(fontFamily, 'font-family'),
 }

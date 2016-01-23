@@ -24,7 +24,7 @@ class App extends Component {
 
     return (
       <Paper className={styles.root}>
-        <Header history={history} path="/"/>
+        <Header history={history} path='/'/>
         <Paper style={{
           padding: '20px',
           textAlign: 'center',
@@ -33,8 +33,8 @@ class App extends Component {
           <ReactCSSTransitionGroup
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
-            component="div"
-            transitionName="page-transition">
+            component='div'
+            transitionName='page-transition'>
               {cloneElement(this.props.children || <Welcome history={history} path='/pokedex'/>, { key: pathname })}
           </ReactCSSTransitionGroup>
           <Status {...status} />

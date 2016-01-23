@@ -42,6 +42,7 @@ export function fetchPokedex() {
           message: statusConstants.NETWORK_ERROR_MESSAGE
         });
 
+        debugger;
         dispatch(action);
 
       });
