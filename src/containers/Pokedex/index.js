@@ -1,4 +1,6 @@
 import React, { Component, PropTypes } from 'react';
+import ReactPaginator from 'react-paginate';
+import { chunk } from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { GridList } from 'material-ui';
@@ -22,30 +24,57 @@ function mapDispatchToProps(dispatch) {
 
 class Pokedex extends Component {
 
+  state = {
+    perPage: 10,
+    currentPage: 1
+  }
+
   componentDidMount() {
     let { actions } = this.props;
     actions.fetchPokedex();
   }
 
-  renderItem(props) {
-    let { id } = props;
-    let path = `/pokemon/${id}`;
-    let data = {
-      ...props,
-      id,
-      path,
-    };
+  componentWillReceiveProps(props) {
+    let { pokemons } = props;
+    let { perPage } = this.state;
+    let { length: pageNum } = chunk(pokemons, perPage);
 
-    return (<PokedexItem {...data} />);
+    this.setState({
+      pageNum,
+    });
+  }
+
+  getCurrentItems() {
+    let { pokemons, filter } = this.props;
+    let { perPage, currentPage } = this.state;
+    let position = currentPage - 1;
+
+    if (filter.length) {
+      return filter;
+    }
+
+    let items = chunk(pokemons, perPage)[position];
+
+    return items ? items : [];
+  }
+
+  onPaginatorClick({ selected: currentPage }) {
+    this.setState({
+      currentPage: !currentPage ? 1 : currentPage + 1
+    });
   }
 
   render() {
-    let { pokemons } = this.props;
+    let { pokemons, filter } = this.props;
+    let { pageNum } = this.state;
+    let list = this.getCurrentItems();
+
     return (
       <div>
-        <ul className={styles.list}>
-          {pokemons.map((p, i) => this.renderItem({...p, key: i}))}
-        </ul>
+        <PokedexList list={list} />
+        <ReactPaginator
+          pageNum={pageNum}
+          clickCallback={::this.onPaginatorClick} />
       </div>
     );
   }
