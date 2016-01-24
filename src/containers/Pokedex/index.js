@@ -4,12 +4,13 @@ import { connect } from 'react-redux';
 import { GridList } from 'material-ui';
 
 import * as pokemonsActions from '../../actions/pokemons';
+import PokedexList from '../../components/PokedexList';
 import PokedexItem from '../../components/PokedexItem';
-import styles from './Pokedex.css';
 
-function mapStateToProps({ pokedex }) {
+function mapStateToProps({ pokedex, filter }) {
   return {
-    pokemons: pokedex.pokemons
+    pokemons: pokedex.pokemons,
+    filter: filter,
   }
 }
 

@@ -17,7 +17,7 @@ export function fetchPokemonSuccess(data) {
 export function fetchPokemon(data) {
   return dispatch => {
     let { id } = data;
-    let url = `${getApi(POKEAPI_POKEMON_URL)}${id}`;
+    let url = getApi(POKEAPI_POKEMON_URL);
     let action = setStatus({
       status: statusConstants.LOADING_STATUS,
       message: statusConstants.LOADING_STATUS_MESSAGE
@@ -25,7 +25,7 @@ export function fetchPokemon(data) {
 
     dispatch(action);
 
-    return fetch(url)
+    return fetch(`${url}${id}`)
       .then((response) => response.json())
       .then((data) => {
         let action = setStatus({
@@ -48,7 +48,7 @@ export function fetchPokemon(data) {
   }
 }
 
-export function searchPokemon(data) {
+export function filterPokemon(data) {
   return {
     type: actionTypes.FILTER_POKEMON,
     data

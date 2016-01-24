@@ -12,6 +12,7 @@ export const INITIAL_STATE = {
 export function pokemon (state = INITIAL_STATE, action) {
   let id = getPokemonId(state.resource_uri);
   let image = `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}`;
+  let path = `/pokemon/${id}`;
 
   switch(action.type) {
     case actionTypes.FETCH_POKEMON_SUCCESS:
@@ -20,6 +21,7 @@ export function pokemon (state = INITIAL_STATE, action) {
         ...action.data,
         image,
         id,
+        path,
       }
 
     case actionTypes.POKEMON_UPDATE:
@@ -27,6 +29,7 @@ export function pokemon (state = INITIAL_STATE, action) {
         ...state,
         image,
         id,
+        path,
       }
 
     default:

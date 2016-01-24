@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, AutoComplete } from 'material-ui';
+import { AppBar, AutoComplete, TextField } from 'material-ui';
 
 import Pokeball from './Pokeball';
 import navigate from '../helpers/navigate';
@@ -7,9 +7,8 @@ import navigate from '../helpers/navigate';
 const Header = ({
   history,
   path,
-  autoCompleteHint,
-  autoCompleteSource,
-  onAutoCompleteRequest,
+  searchHint,
+  onSearchSubmit,
 }) => (
   <header>
     <AppBar 
@@ -30,14 +29,13 @@ const Header = ({
         <span style={{ fontWeight: 300 }}>pokedux</span>
       }>
 
-      <AutoComplete
-        onNewRequest={onAutoCompleteRequest}
-        hintText={autoCompleteHint}
-        dataSource={autoCompleteSource}
-        style={{
-          marginTop: 5,
-        }}
-      />
+      <TextField
+          style={{
+            marginTop: 5,
+          }}
+          onChange={onSearchSubmit}
+          onEnterKeyDown={onSearchSubmit}
+          hintText={searchHint}/>
     </AppBar>
   </header>
 );

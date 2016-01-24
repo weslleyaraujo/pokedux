@@ -27,22 +27,27 @@ function mapDispatchToProps(dispatch) {
 
 class App extends Component {
 
-  onAutoCompleteRequest(search) {
-    let { actions } = this.props;
-    actions.searchPokemon(search);
+  onSearchSubmit(data) {
+    let { actions, pokedex } = this.props;
+    let { push } = this.props.history;
+    let { value } = data.target;
+
+    push('/pokedex');
+    actions.filterPokemon({
+      pokedex,
+      value
+    });
   }
 
   render() {
     let { status, history } = this.props;
     let { pathname } = this.props.location;
-    let { pokemons } = this.props.pokedex;
 
     return (
       <Paper className={styles.root}>
         <Header
-          onAutoCompleteRequest={::this.onAutoCompleteRequest}
-          autoCompleteHint='Search for a pokemon'
-          autoCompleteSource={pokemons.map(p => p.name)}
+          onSearchSubmit={::this.onSearchSubmit}
+          searchHint='Search for a pokemon'
           history={history}
           path='/'/>
 
