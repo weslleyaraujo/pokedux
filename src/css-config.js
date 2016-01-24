@@ -13,7 +13,9 @@ const index = {
 const colors = {
   red500: Styles.Colors.red500,
   blueA400: Styles.Colors.blueA400,
-  white: '#FFF'
+  white: '#FFF',
+  lime50: Styles.Colors.lime50,
+  lime100: Styles.Colors.lime100,
 }
 
 const fontFamily = {

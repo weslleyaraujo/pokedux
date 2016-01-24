@@ -13,6 +13,14 @@ $size: 70px;
   font-weight: bold;
 }
 
+.root:nth-child(odd) {
+  background-color: $colors--lime50;
+}
+
+.root:nth-child(even) {
+  background-color: $colors--lime100;
+}
+
 .root :global p {
   margin: 0 10px;
 }
