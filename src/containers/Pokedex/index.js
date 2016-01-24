@@ -3,7 +3,6 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { GridList } from 'material-ui';
 
-import { invertColor, getRandomColor } from '../../helpers/color-utils';
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexItem from '../../components/PokedexItem';
 import styles from './Pokedex.css';
