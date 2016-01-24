@@ -1,7 +1,9 @@
+$size: 70px;
+
 .root {
   display: inline-block;
-  height: 100px;
-  line-height: 100px;
+  height: $size;
+  line-height: $size;
   width: 100%;
   position: relative;
   text-align: left;
@@ -15,8 +17,13 @@
   margin: 0 10px;
 }
 
+.root :global a {
+  text-decoration: none;
+  color: #00bcd4;
+}
+
 .image {
-  width: 100px;
+  width: $size;
   position: absolute;
   top: 0;
   right: 0;

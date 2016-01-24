@@ -1,12 +1,15 @@
 import React from 'react';
-import { AppBar, Tabs, Tab } from 'material-ui';
+import { AppBar, AutoComplete } from 'material-ui';
 
 import Pokeball from './Pokeball';
 import navigate from '../helpers/navigate';
 
 const Header = ({
   history,
-  path
+  path,
+  autoCompleteHint,
+  autoCompleteSource,
+  onAutoCompleteRequest,
 }) => (
   <header>
     <AppBar 
@@ -14,7 +17,7 @@ const Header = ({
         paddingLeft: 60
       }}
       iconElementLeft={
-        <a href="#" onClick={navigate(history, path)}>
+        <a href='#' onClick={navigate(history, path)}>
           <Pokeball
             style={{
               position: 'absolute',
@@ -27,11 +30,14 @@ const Header = ({
         <span style={{ fontWeight: 300 }}>pokedux</span>
       }>
 
-      <Tabs>
-        <Tab route="/pokedex" label="FULL POKEDEX" />
-        <Tab route="/example"label="SEARCH POKEMON" />
-      </Tabs>
-
+      <AutoComplete
+        onNewRequest={onAutoCompleteRequest}
+        hintText={autoCompleteHint}
+        dataSource={autoCompleteSource}
+        style={{
+          marginTop: 5,
+        }}
+      />
     </AppBar>
   </header>
 );

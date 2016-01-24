@@ -47,3 +47,10 @@ export function fetchPokemon(data) {
       });
   }
 }
+
+export function searchPokemon(data) {
+  return {
+    type: actionTypes.FILTER_POKEMON,
+    data
+  };
+}
