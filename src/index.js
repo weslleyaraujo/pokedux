@@ -1,10 +1,11 @@
 import React from 'react';
+import LogMonitor from 'redux-devtools-log-monitor';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
 import { Router, Route } from 'react-router';
 import { ReduxRouter } from 'redux-router';
 import { createHashHistory } from 'history';
+
 
 let history = createHashHistory({
   queryKey: false
@@ -13,6 +14,7 @@ let history = createHashHistory({
 import App from './containers/App';
 import Pokedex from './containers/Pokedex';
 import Pokemon from './containers/Pokemon';
+import DevTools from './containers/DevTools';
 import configureStore from './store/configureStore';
 
 let store = configureStore();
@@ -29,9 +31,7 @@ render(
         </ReduxRouter>
       </Router>
     </Provider>
-    <DebugPanel top right bottom>
-      <DevTools store={store} monitor={LogMonitor} />
-    </DebugPanel>
+    <DevTools store={store}/>
   </div>,
 
   document.querySelector('#app')
