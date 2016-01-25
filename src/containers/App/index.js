@@ -34,7 +34,7 @@ class App extends Component {
 
     push('/pokedex');
     actions.filterPokemon({
-      pokedex,
+      list: pokedex.pokemons,
       value
     });
   }
@@ -50,12 +50,6 @@ class App extends Component {
           searchHint='Search for a pokemon'
           history={history}
           path='/'/>
-
-        <Paper style={{
-          padding: '20px',
-          textAlign: 'center',
-          minHeight: '30vh'
-        }}>
           <ReactCSSTransitionGroup
             transitionEnterTimeout={300}
             transitionLeaveTimeout={300}
@@ -64,7 +58,6 @@ class App extends Component {
               {cloneElement(this.props.children || <Welcome history={history} path='/pokedex'/>, { key: pathname })}
           </ReactCSSTransitionGroup>
           <Status {...status} />
-        </Paper>
         <Footer
           github={GITHUB_REPO_URL}
           twitterUrl={TWITTER_PROFILE_URL}
