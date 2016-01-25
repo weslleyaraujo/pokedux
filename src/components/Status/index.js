@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import fetch from 'isomorphic-fetch';
 import { polyfill } from 'es6-promise';
 import { random, times } from 'lodash';
+import { LinearProgress } from 'material-ui';
 
 import styles from './Status.css';
 import { NULL_STATUS, NETWORK_ERROR } from '../../constants/status'
@@ -71,6 +72,7 @@ class Status extends Component {
 
     return (
       <div className={className} >
+        <LinearProgress mode="indeterminate" />
         {message && <p>{message}</p>}
         <div>
           {this.shouldShowImage() && this.renderImage()}
