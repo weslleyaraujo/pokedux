@@ -4,8 +4,9 @@
   font-size: 20px;
   font-weight: 300;
   text-align: center;
-  background-color: #e91e63;
+  background-color: $colors--pink500;
   color: $colors--white;
+  box-sizing: border-box;
 }
 
 .root :global a {

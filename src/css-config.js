@@ -18,6 +18,7 @@ const colors = {
   lime100: Styles.Colors.lime100,
   yellow500: Styles.Colors.yellow500,
   yellow600: Styles.Colors.yellow600,
+  pink500: Styles.Colors.pink500,
 }
 
 const fontFamily = {
