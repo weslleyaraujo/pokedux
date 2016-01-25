@@ -10,6 +10,7 @@ $circle--inner: 30px;
   z-index: $z-index--Welcome;
   font-weight: 300;
   color: $colors--white;
+  text-align: center;
 }
 
 :global .page-transition-leave {
