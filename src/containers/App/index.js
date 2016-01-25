@@ -32,6 +32,10 @@ class App extends Component {
     let { push } = this.props.history;
     let { value } = data.target;
 
+    if (value.length < 3 && value.length) {
+      return;
+    }
+
     push('/pokedex');
     actions.filterPokemon({
       list: pokedex.pokemons,
