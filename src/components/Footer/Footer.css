@@ -1,16 +1,19 @@
 .root {
-  position: fixed;
-  bottom: 0;
   padding: 10px;
-  text-align: center;
   width: 100%;
   font-size: 20px;
   font-weight: 300;
-  color: $colors--blueA400;
+  text-align: center;
+  background-color: #e91e63;
+  color: $colors--white;
 }
 
 .root :global a {
-  color: $colors--blueA400;
+  color: $colors--yellow500;
   text-decoration: none;
+}
+
+.root :global a:hover {
+  color: $colors--yellow600;
 }
 
