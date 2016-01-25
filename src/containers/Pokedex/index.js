@@ -1,5 +1,4 @@
 import React, { Component, PropTypes } from 'react';
-import ReactPaginator from 'react-paginate';
 import { chunk } from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -8,6 +7,7 @@ import { GridList } from 'material-ui';
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexList from '../../components/PokedexList';
 import PokedexItem from '../../components/PokedexItem';
+import Paginator from '../../components/Paginator';
 
 function mapStateToProps({ pokedex, filter }) {
   return {
@@ -74,9 +74,10 @@ class Pokedex extends Component {
       <div>
         <PokedexList list={list} />
         {!this.hasFilter() &&
-          <ReactPaginator
+          <Paginator
             pageNum={pageNum}
-            clickCallback={::this.onPaginatorClick} />}
+            onClick={::this.onPaginatorClick} />
+          }
       </div>
     );
   }
