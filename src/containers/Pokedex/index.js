@@ -44,15 +44,15 @@ class Pokedex extends Component {
     });
   }
 
+  hasFilter() {
+    let { value } = this.props.filter;
+    return !!value.length;
+  }
+
   getCurrentItems() {
-    let { pokemons, filter } = this.props;
+    let { pokemons } = this.props;
     let { perPage, currentPage } = this.state;
     let position = currentPage - 1;
-
-    if (filter.length) {
-      return filter;
-    }
-
     let items = chunk(pokemons, perPage)[position];
 
     return items ? items : [];
@@ -67,14 +67,16 @@ class Pokedex extends Component {
   render() {
     let { pokemons, filter } = this.props;
     let { pageNum } = this.state;
-    let list = this.getCurrentItems();
+    let hasFilter = this.hasFilter();
+    let list = hasFilter ? filter.list : this.getCurrentItems();
 
     return (
       <div>
         <PokedexList list={list} />
-        <ReactPaginator
-          pageNum={pageNum}
-          clickCallback={::this.onPaginatorClick} />
+        {!this.hasFilter() &&
+          <ReactPaginator
+            pageNum={pageNum}
+            clickCallback={::this.onPaginatorClick} />}
       </div>
     );
   }
