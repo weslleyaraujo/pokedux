@@ -52,8 +52,7 @@ class Pokedex extends Component {
   getCurrentItems() {
     let { pokemons } = this.props;
     let { perPage, currentPage } = this.state;
-    let position = currentPage - 1;
-    let items = chunk(pokemons, perPage)[position];
+    let items = chunk(pokemons, perPage)[currentPage - 1];
 
     return items ? items : [];
   }
@@ -65,7 +64,6 @@ class Pokedex extends Component {
   }
 
   render() {
-    let { pokemons, filter } = this.props;
     let { pageNum } = this.state;
     let hasFilter = this.hasFilter();
     let list = hasFilter ? filter.list : this.getCurrentItems();
