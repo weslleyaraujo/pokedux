@@ -73,7 +73,7 @@ class Pokedex extends Component {
     return (
       <div>
         <PokedexList list={list} />
-        {!this.hasFilter() &&
+        {!hasFilter &&
           <Paginator
             pageNum={pageNum}
             onClick={::this.onPaginatorClick} />
