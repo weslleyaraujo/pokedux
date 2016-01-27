@@ -47,3 +47,10 @@ export function fetchPokedex() {
       });
   }
 }
+
+export function changePage(data) {
+  return {
+    type: actionTypes.CHANGE_PAGE,
+    data,
+  }
+}
