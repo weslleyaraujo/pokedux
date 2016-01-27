@@ -18,16 +18,11 @@ function mapStateToProps({ pokedex, filter }) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(pokemonsActions, dispatch)
+    actions: bindActionCreators(pokemonsActions, dispatch),
   }
 }
 
 class Pokedex extends Component {
-
-  state = {
-    perPage: 10,
-    currentPage: 1
-  }
 
   componentDidMount() {
     let { actions } = this.props;
