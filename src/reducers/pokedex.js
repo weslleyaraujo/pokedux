@@ -4,7 +4,9 @@ import * as actionTypes from '../constants/actionTypes';
 import { pokemon } from './pokemon';
 
 export const INITIAL_STATE = {
-  pokemons: []
+  pokemons: [],
+  page: [],
+  currentPage: 1,
 };
 
 export const PER_PAGE = 10;
@@ -20,18 +22,19 @@ export function pokedex(state = INITIAL_STATE, action) {
       let pokemons = objects.reduce((c, n) => [...c, ...n.pokemon], [])
         .map((x) => pokemon(x, { type: actionTypes.POKEMON_UPDATE }));
 
+      let pages = chunk(pokemons, PER_PAGE);
+
       return {
         ...state,
         pokemons,
+        page: pages[0],
+        pageNum: pages.length,
       }
 
     case actionTypes.CHANGE_PAGE:
-      let { pokemons, currentPage } = action.data;
-      let items = chunk(pokemon, PER_PAGE)[currentPage - 1]
-
       return {
         ...state,
-        pokemons,
+        page: chunk(action.data.pokemons, PER_PAGE)[action.data.currentPage - 1],
       }
 
     default:

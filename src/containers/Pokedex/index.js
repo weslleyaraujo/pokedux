@@ -12,6 +12,7 @@ import Paginator from '../../components/Paginator';
 function mapStateToProps({ pokedex, filter }) {
   return {
     pokemons: pokedex.pokemons,
+    page: pokedex.page,
     filter: filter,
   }
 }
@@ -29,37 +30,27 @@ class Pokedex extends Component {
     actions.fetchPokedex();
   }
 
-  componentWillReceiveProps(props) {
-    let { pokemons } = props;
-    let { perPage } = this.state;
-    let { length: pageNum } = chunk(pokemons, perPage);
-
-    this.setState({
-      pageNum,
-    });
-  }
-
   hasFilter() {
     let { value } = this.props.filter;
     return !!value.length;
   }
 
-  onPaginatorClick({ selected: currentPage }) {
-    let { actions } = this.props;
+  onPaginatorClick({ selected }) {
+    let { actions, pokemons } = this.props;
+
     actions.changePage({
-      currentPage: !currentPage ? 1 : (currentPage + 1),
+      currentPage: !selected ? 1 : (selected + 1),
       pokemons,
     });
   }
 
   render() {
-    let { pageNum } = this.state;
-    let { list, pokemons } = this.props;
+    let { list, page, pageNum } = this.props;
     let hasFilter = this.hasFilter();
 
     return (
       <div>
-        <PokedexList list={hasFilter ? list : pokemons} />
+        <PokedexList list={hasFilter ? list : page} />
         {!hasFilter &&
           <Paginator
             pageNum={pageNum}
@@ -72,6 +63,7 @@ class Pokedex extends Component {
 
 Pokedex.propTypes = {
   pokemons: PropTypes.array.isRequired,
+  page: PropTypes.array.isRequired,
   actions: PropTypes.object.isRequired,
 };
 
