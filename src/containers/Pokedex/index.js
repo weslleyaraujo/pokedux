@@ -44,28 +44,22 @@ class Pokedex extends Component {
     return !!value.length;
   }
 
-  getCurrentItems() {
-    let { pokemons } = this.props;
-    let { perPage, currentPage } = this.state;
-    let items = chunk(pokemons, perPage)[currentPage - 1];
-
-    return items ? items : [];
-  }
-
   onPaginatorClick({ selected: currentPage }) {
-    this.setState({
-      currentPage: !currentPage ? 1 : currentPage + 1
+    let { actions } = this.props;
+    actions.changePage({
+      currentPage: !currentPage ? 1 : (currentPage + 1),
+      pokemons,
     });
   }
 
   render() {
     let { pageNum } = this.state;
+    let { list, pokemons } = this.props;
     let hasFilter = this.hasFilter();
-    let list = hasFilter ? filter.list : this.getCurrentItems();
 
     return (
       <div>
-        <PokedexList list={list} />
+        <PokedexList list={hasFilter ? list : pokemons} />
         {!hasFilter &&
           <Paginator
             pageNum={pageNum}
