@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react';
+import { bind as bindKey } from 'mousetrap';
 import { chunk } from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -29,6 +30,13 @@ class Pokedex extends Component {
   componentDidMount() {
     let { actions } = this.props;
     actions.fetchPokedex();
+
+    bindKey('left', ::this.onKeyPressed);
+    bindKey('right', ::this.onKeyPressed);
+  }
+
+  onKeyPressed(event, shortcut) {
+    console.log(this, shortcut);
   }
 
   hasFilter() {
