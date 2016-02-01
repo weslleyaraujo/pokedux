@@ -24,8 +24,8 @@ class Status extends Component {
   state = {
     images,
     actual: 0,
-    loaded: false
-  }
+    loaded: false,
+  };
 
   componentDidMount() {
     let promises = this.state.images.map((x) => singlePreload(x));
