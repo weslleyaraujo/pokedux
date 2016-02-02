@@ -29,7 +29,11 @@ class Pokedex extends Component {
 
   componentDidMount() {
     let { actions } = this.props;
-    actions.fetchPokedex();
+    let { currentPage } = this.props.routeParams;
+
+    actions.fetchPokedex({
+      currentPage: currentPage ? currentPage : 1,
+    });
 
     bindKey('left', ::this.onKeyPressed);
     bindKey('right', ::this.onKeyPressed);
@@ -40,17 +44,17 @@ class Pokedex extends Component {
   }
 
   hasFilter() {
-    let { value } = this.props.filter;
-    return !!value.length;
+    return this.props.filter.value.length;
   }
 
   onPaginatorClick({ selected }) {
-    let { actions, pokedex } = this.props;
+    this.props.history.push(`/pokedex/${selected ? (selected + 1) : 1}`)
+    // let { actions, pokedex } = this.props;
 
-    actions.changePage({
-      currentPage: !selected ? 1 : (selected + 1),
-      pokemons: pokedex.pokemons,
-    });
+    // actions.changePage({
+    //   currentPage: !selected ? 1 : (selected + 1),
+    //   pokemons: pokedex.pokemons,
+    // });
   }
 
   render() {

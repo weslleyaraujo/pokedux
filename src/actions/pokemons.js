@@ -15,12 +15,14 @@ export function fetchPokedexSuccess(data) {
   };
 }
 
-export function fetchPokedex() {
+export function fetchPokedex({ currentPage }) {
+
   return dispatch => {
     let action = setStatus({
       status: statusConstants.LOADING_STATUS,
       message: statusConstants.LOADING_STATUS_MESSAGE
     });
+
     let url = getApi(POKEAPI_POKEDEX_URL);
 
     dispatch(action);
@@ -33,7 +35,10 @@ export function fetchPokedex() {
         });
 
         dispatch(action);
-        dispatch(fetchPokedexSuccess(data));
+        dispatch(fetchPokedexSuccess({
+          ...data,
+          currentPage,
+        }));
 
       })
       .catch((error) => {
