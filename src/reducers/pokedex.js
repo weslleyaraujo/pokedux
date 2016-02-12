@@ -18,7 +18,7 @@ export function pokedex(state = INITIAL_STATE, action) {
 
   switch (action.type) {
     case actionTypes.FETCH_POKEDEX_SUCCESS:
-      let { objects } = action.data;
+      let { objects, currentPage } = action.data;
       let pokemons = objects.reduce((c, n) => [...c, ...n.pokemon], [])
         .map((x) => pokemon(x, { type: actionTypes.POKEMON_UPDATE }));
 
@@ -27,7 +27,7 @@ export function pokedex(state = INITIAL_STATE, action) {
       return {
         ...state,
         pokemons,
-        page: pages[0],
+        page: pages[currentPage - 1],
         pageNum: pages.length,
       }
 

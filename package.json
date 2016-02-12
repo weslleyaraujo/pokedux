@@ -37,6 +37,7 @@
     "material-ui": "^0.13.4",
     "mocha": "^2.3.4",
     "mocha-lcov-reporter": "^1.0.0",
+    "mousetrap": "^1.5.3",
     "nock": "^3.4.0",
     "postcss-loader": "^0.8.0",
     "postcss-nested": "^1.0.0",
