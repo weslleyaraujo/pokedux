@@ -5,8 +5,17 @@ import * as actionTypes from '../constants/actionTypes'
 import { setStatus } from './status';
 import { POKEAPI_POKEDEX_URL } from '../constants/services';
 import * as statusConstants from '../constants/status';
-import getApi from '../helpers/get-api';
 
+import getAPIUrl from '../helpers/get-api';
+
+const URL = getAPIUrl(POKEAPI_POKEDEX_URL);
+const {
+  LOADING_STATUS,
+  LOADING_STATUS_MESSAGE,
+  NULL_STATUS,
+  NETWORK_ERROR,
+  NETWORK_ERROR_MESSAGE
+} = statusConstants;
 
 export function fetchPokedexSuccess(data) {
   return {
@@ -16,36 +25,30 @@ export function fetchPokedexSuccess(data) {
 }
 
 export function fetchPokedex() {
+
   return dispatch => {
-    let action = setStatus({
-      status: statusConstants.LOADING_STATUS,
-      message: statusConstants.LOADING_STATUS_MESSAGE
-    });
-    let url = getApi(POKEAPI_POKEDEX_URL);
 
-    dispatch(action);
+    dispatch(setStatus({
+      status: LOADING_STATUS,
+      message: LOADING_STATUS_MESSAGE,
+    }));
 
-    return fetch(url)
-      .then((response) => response.json())
-      .then((data) => {
-        let action = setStatus({
-          status: statusConstants.NULL_STATUS
-        });
+    return fetch(URL)
+      .then(r => r.json())
+      .then(d => {
+        dispatch(setStatus({
+          status: NULL_STATUS,
+        }));
 
-        dispatch(action);
-        dispatch(fetchPokedexSuccess(data));
-
+        dispatch(fetchPokedexSuccess(d));
       })
-      .catch((error) => {
-        let action = setStatus({
-          status: statusConstants.NETWORK_ERROR,
-          message: statusConstants.NETWORK_ERROR_MESSAGE
-        });
-
-        dispatch(action);
-
+      .catch(e => {
+        dispatch(setStatus({
+          status: NETWORK_ERROR,
+          message: NETWORK_ERROR_MESSAGE
+        }));
       });
-  }
+  };
 }
 
 export function changePage(data) {
