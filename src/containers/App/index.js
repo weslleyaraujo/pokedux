@@ -12,10 +12,10 @@ import Welcome from '../../components/Welcome';
 import { GITHUB_REPO_URL, TWITTER_PROFILE_URL, TWITTER_PROFILE } from '../../constants/appConfig';
 import styles from './App.css';
 
-function mapStateToProps({ status, pokedex }) {
+function mapStateToProps({ status, pokemons }) {
   return {
     status,
-    pokedex,
+    pokemons,
   }
 }
 
@@ -39,7 +39,7 @@ class App extends Component {
     push('/pokedex');
     actions.filterPokemon({
       list: pokedex.pokemons,
-      value
+      value,
     });
   }
 
@@ -71,9 +71,5 @@ class App extends Component {
   }
 
 }
-
-App.propTypes = {
-  status: PropTypes.object.isRequired,
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

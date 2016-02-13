@@ -7,16 +7,14 @@ export const INITIAL_STATE = {
 };
 
 export function status(state = INITIAL_STATE, action) {
-  if (!action) {
-    return state;
-  }
 
   switch (action.type) {
     case SET_STATUS:
       let { status, message } = action.data;
+
       return {
         status,
-        message
+        message,
       }
 
     default:

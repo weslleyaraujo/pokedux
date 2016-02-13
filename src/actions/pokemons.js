@@ -42,7 +42,7 @@ export function fetchPokedex() {
 
         dispatch(fetchPokedexSuccess(d));
       })
-      .catch(e => {
+      .catch(({ message }) => {
         dispatch(setStatus({
           status: NETWORK_ERROR,
           message: NETWORK_ERROR_MESSAGE

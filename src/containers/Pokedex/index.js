@@ -3,19 +3,17 @@ import { bind as bindKey } from 'mousetrap';
 import { chunk } from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { GridList } from 'material-ui';
 
 import * as pokemonsActions from '../../actions/pokemons';
 import PokedexList from '../../components/PokedexList';
 import PokedexItem from '../../components/PokedexItem';
 import Paginator from '../../components/Paginator';
 
-function mapStateToProps({ pokedex, filter }) {
+function mapStateToProps({ pokemons, filter }) {
+  let { list } = pokemons;
+
   return {
-    pokedex,
-    pageNum: pokedex.pageNum,
-    page: pokedex.page,
-    filter: filter,
+    list,
   }
 }
 
@@ -25,18 +23,24 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
+function getCurrentList(list, page) {
+  if (!list.length) {
+    return [];
+  }
+
+  return ;
+}
+
 class Pokedex extends Component {
 
   componentDidMount() {
     let { actions } = this.props;
     let { currentPage } = this.props.routeParams;
 
-    actions.fetchPokedex({
-      currentPage: currentPage ? currentPage : 1,
-    });
+    actions.fetchPokedex();
 
-    bindKey('left', ::this.onKeyPressed);
-    bindKey('right', ::this.onKeyPressed);
+    // bindKey('left', ::this.onKeyPressed);
+    // bindKey('right', ::this.onKeyPressed);
   }
 
   onKeyPressed(event, shortcut) {
@@ -44,31 +48,23 @@ class Pokedex extends Component {
   }
 
   hasFilter() {
-    return this.props.filter.value.length;
+    // return this.props.filter.value.length;
   }
 
   onPaginatorClick({ selected }) {
-    this.props.history.push(`/pokedex/${selected ? (selected + 1) : 1}`)
-    // let { actions, pokedex } = this.props;
-
-    // actions.changePage({
-    //   currentPage: !selected ? 1 : (selected + 1),
-    //   pokemons: pokedex.pokemons,
-    // });
+    let { push } = this.props.history;
+    push(`/pokedex/${selected}`);
   }
 
   render() {
-    let { filter, page, pokedex, pageNum } = this.props;
-    let hasFilter = this.hasFilter();
+    let { currentPage } = this.props.routeParams;
+    let { list } = this.props;
+    let blocks = chunk(list, 10);
 
     return (
       <div>
-        <PokedexList list={hasFilter ? filter.list : page} />
-        {!hasFilter &&
-          <Paginator
-            pageNum={pageNum}
-            onClick={::this.onPaginatorClick} />
-          }
+        <PokedexList list={blocks[currentPage ? (currentPage - 1) : 0] || []} />
+        <Paginator pageNum={blocks.length} onClick={::this.onPaginatorClick} />
       </div>
     );
   }
