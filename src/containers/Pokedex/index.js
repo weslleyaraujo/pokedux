@@ -35,7 +35,7 @@ class Pokedex extends Component {
 
   componentDidMount() {
     let { actions } = this.props;
-    let { currentPage } = this.props.routeParams;
+    let { page } = this.props.routeParams;
 
     actions.fetchPokedex();
 
@@ -52,18 +52,22 @@ class Pokedex extends Component {
   }
 
   onPaginatorClick({ selected }) {
-    let { push } = this.props.history;
-    push(`/pokedex/${selected}`);
+    this.props.history.push({
+      pathname: '/pokedex',
+      query: {
+        page: selected + 1,
+      },
+    });
   }
 
   render() {
-    let { currentPage } = this.props.routeParams;
+    let { page } = this.props.location.query;
     let { list } = this.props;
     let blocks = chunk(list, 10);
 
     return (
       <div>
-        <PokedexList list={blocks[currentPage ? (currentPage - 1) : 0] || []} />
+        <PokedexList list={blocks[page ? (page - 1) : 0] || []} />
         <Paginator pageNum={blocks.length} onClick={::this.onPaginatorClick} />
       </div>
     );

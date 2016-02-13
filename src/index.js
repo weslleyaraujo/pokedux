@@ -25,7 +25,7 @@ render(
       <Router history={history}>
         <ReduxRouter>
           <Route path="/" component={App}>
-            <Route path="/pokedex(/:currentPage)" component={Pokedex} />
+            <Route path="/pokedex" component={Pokedex} />
             <Route path="/pokemon/:id" component={Pokemon} />
           </Route>
         </ReduxRouter>
