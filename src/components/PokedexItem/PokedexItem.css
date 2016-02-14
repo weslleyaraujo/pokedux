@@ -35,5 +35,6 @@ $size: 70px;
   position: absolute;
   top: 0;
   right: 0;
+  image-rendering: pixelated;
 }
 
