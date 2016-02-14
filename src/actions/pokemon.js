@@ -23,7 +23,7 @@ export function fetchPokemon(data) {
 
     dispatch(action);
 
-    return fetch(getEntrypointFor('pokemon'))
+    return fetch(getEntrypointFor('pokemon', id))
       .then((response) => response.json())
       .then((data) => {
         let action = setStatus({

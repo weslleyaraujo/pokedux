@@ -11,7 +11,7 @@ const PokedexItem = ({
   <li className={styles.root}>
     <Link to={path}>
       <p>{name}</p>
-      <img className={styles.image} src={`${image}${id}.png`} />
+      <img className={styles.image} src={image} />
     </Link>
   </li>
 );

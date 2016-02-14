@@ -28,11 +28,14 @@ class Pokemon extends Component {
   render() {
     let { name, image } = this.props.pokemon;
     let { id } = this.props.params;
+    let { goBack } = this.props.history;
+
     return (
       <div>
-        Hey there from pokemon! {name} 
-        <img src={`${image}${id}.png`} alt={name} />
-        <Link to="pokedex">Go back</Link>
+        <h2>{name}</h2>
+        <img src={image}
+          alt={name} />
+        <a onClick={goBack} >Return</a>
       </div>
     );
   }

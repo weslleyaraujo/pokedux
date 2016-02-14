@@ -12,6 +12,6 @@ const alias = {
   pokemon: POKEAPI_POKEMON_URL
 }
 
-export default function getEntrypointFor(path = '') {
-  return POKEAPI_ROOT_URL + alias[path];
+export default function getEntrypointFor(path = '', aditional = '') {
+  return POKEAPI_ROOT_URL + alias[path] + aditional;
 }

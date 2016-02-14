@@ -1,6 +1,7 @@
 import getPokemonId from '../helpers/get-pokemon-id';
-import { POKEAPI_IMAGE_URL, POKEAPI_ROOT_URL } from '../constants/services';
+import getEntrypointFor from '../helpers/get-entrypoint-for';
 import * as actionTypes from '../constants/actionTypes'
+import { POKEAPI_IMAGE_URL, POKEAPI_ROOT_URL } from '../constants/services';
 
 export const INITIAL_STATE = {
   name: '',
@@ -10,25 +11,26 @@ export const INITIAL_STATE = {
 };
 
 export function pokemon (state = INITIAL_STATE, action) {
-  let id = getPokemonId(state.resource_uri);
-  let image = `${POKEAPI_ROOT_URL}${POKEAPI_IMAGE_URL}`;
+  let id = getPokemonId(action.data ? action.data.resource_uri : state.resource_uri);
+  let image = getEntrypointFor('image', `${id}.png`);
   let path = `/pokemon/${id}`;
 
   switch(action.type) {
     case actionTypes.FETCH_POKEMON_SUCCESS:
+      let { data } = action;
       return {
+        ...data,
         ...state,
-        ...action.data,
-        image,
         id,
+        image,
         path,
       }
 
     case actionTypes.POKEMON_UPDATE:
       return {
         ...state,
-        image,
         id,
+        image,
         path,
       }
 
