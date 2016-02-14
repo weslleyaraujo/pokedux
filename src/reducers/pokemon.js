@@ -20,7 +20,6 @@ export function pokemon (state = INITIAL_STATE, action) {
       let { data } = action;
       return {
         ...data,
-        ...state,
         id,
         image,
         path,

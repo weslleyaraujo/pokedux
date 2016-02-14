@@ -1,9 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
+import { Paper } from 'material-ui';
 
 import * as pokemonActions from '../../actions/pokemon';
+import styles from './Pokemon.css';
+import Title from '../../components/title';
 
 function mapStateToProps({ pokemon }) {
   return {
@@ -31,10 +33,19 @@ class Pokemon extends Component {
     let { goBack } = this.props.history;
 
     return (
-      <div>
-        <h2>{name}</h2>
-        <img src={image}
-          alt={name} />
+      <div className={styles.root}>
+        <Title text={name} />
+        <div>
+          <div>
+            <p>This legendary Chinese POKEMON is considered magnif icent. Many people are enchanted by its grand mane.</p>
+          </div>
+          <div>
+            <img
+              className={styles.image}
+              src={image}
+              alt={name} />
+          </div>
+        </div>
         <a onClick={goBack} >Return</a>
       </div>
     );

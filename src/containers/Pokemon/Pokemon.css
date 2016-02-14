@@ -1,0 +1,8 @@
+.root {
+  padding: 0.5em 1.6em;
+}
+
+.image {
+  image-rendering: pixelated;
+  width: 100px;
+}
