@@ -10,16 +10,23 @@ const index = {
 };
 
 // Colors
-const colors = {
-  red500: Styles.Colors.red500,
-  blueA400: Styles.Colors.blueA400,
+const colors = [
+  'blueA400',
+  'lime100',
+  'lime50',
+  'pink500',
+  'red500',
+  'white',
+  'yellow500',
+  'yellow600',
+  'grey50',
+  'grey200',
+].reduce((c, n) => {
+  c[n] = Styles.Colors[n];
+  return c;
+}, {
   white: '#FFF',
-  lime50: Styles.Colors.lime50,
-  lime100: Styles.Colors.lime100,
-  yellow500: Styles.Colors.yellow500,
-  yellow600: Styles.Colors.yellow600,
-  pink500: Styles.Colors.pink500,
-}
+});
 
 const fontFamily = {
   default: Styles.LightRawTheme.fontFamily,
