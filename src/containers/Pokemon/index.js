@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { Paper } from 'material-ui';
+import { List, ListItem, Divider } from 'material-ui';
+import { FaHandGrabO, FaShield, FaBarChart, FaSmileO, FaArrowsV, FaHeart } from 'react-icons';
 
 import * as pokemonActions from '../../actions/pokemon';
 import styles from './Pokemon.css';
@@ -28,22 +29,55 @@ class Pokemon extends Component {
   }
 
   render() {
-    let { name, image } = this.props.pokemon;
+    let {
+      attack,
+      catch_rate,
+      defense,
+      exp,
+      happiness,
+      height,
+      hp,
+      image,
+      name,
+    } = this.props.pokemon;
+
     let { id } = this.props.params;
     let { goBack } = this.props.history;
 
     return (
-      <div className={styles.root}>
-        <Title text={name} />
-        <div>
+      <div>
+        <div className={styles.topWrap}>
+          <Title text={name} />
+          <div className={styles.listWrap}>
+            <List>
+              <ListItem
+                disabled={true}
+                primaryText={<span><FaHandGrabO /><strong> Attack:</strong> {attack}</span>}/>
+              <ListItem
+                disabled={true}
+                primaryText={<span><FaShield /><strong> Defense:</strong> {defense}</span>}/>
+              <ListItem
+                disabled={true}
+                primaryText={<span><FaBarChart /><strong> Catch Rate: </strong>{defense}</span>}/>
+              <ListItem
+                disabled={true}
+                primaryText={<span><FaSmileO /><strong> Happiness: </strong>{happiness}</span>}/>
+              <ListItem
+                disabled={true}
+                primaryText={<span><FaArrowsV /><strong> Height: </strong>{height}</span>}/>
+              <ListItem
+                disabled={true}
+                primaryText={<span><FaHeart /><strong> HP: </strong>{hp}</span>}/>
+            </List>
+          </div>
+          <img
+            className={styles.image}
+            src={image}
+            alt={name} />
+        </div>
+        <div className={styles.content}>
           <div>
             <p>This legendary Chinese POKEMON is considered magnif icent. Many people are enchanted by its grand mane.</p>
-          </div>
-          <div>
-            <img
-              className={styles.image}
-              src={image}
-              alt={name} />
           </div>
         </div>
         <a onClick={goBack} >Return</a>

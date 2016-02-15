@@ -23,14 +23,6 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-function getCurrentList(list, page) {
-  if (!list.length) {
-    return [];
-  }
-
-  return ;
-}
-
 class Pokedex extends Component {
 
   componentDidMount() {

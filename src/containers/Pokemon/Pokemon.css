@@ -1,8 +1,24 @@
-.root {
+.content {
   padding: 0.5em 1.6em;
 }
 
 .image {
   image-rendering: pixelated;
-  width: 100px;
+  width: 180px;
+  display: block;
+  margin-right: 0.5em;
+  float: right;
+}
+
+.topWrap {
+  background-color: $colors--grey50;
+  border-bottom: 1px solid $colors--grey200;
+  padding: .3em;
+  overflow: hidden;
+}
+
+.listWrap {
+  width: 360px;
+  float: left;
+  border: 1px solid $colors--grey200;
 }
