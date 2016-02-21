@@ -1,0 +1,32 @@
+.root {
+  position: relative;
+  text-align: center;
+  height: 90vh;
+  line-height: 90vh;
+  background-color: $colors--redA400;
+}
+
+.title {
+  padding-bottom: .3em;
+  font-size: 1.5em;
+  font-weight: lighter;
+  margin: 0;
+  color: $colors--white;
+  text-shadow: 1px 1px 1px $colors--redA700;
+  text-transform: uppercase;
+}
+
+.icon {
+  position: absolute;
+  top: 10px;
+}
+
+.iconLeft {
+  left: 10px;
+  composes: icon;
+}
+
+.iconRight {
+  right: 10px;
+  composes: icon;
+}

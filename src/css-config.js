@@ -12,15 +12,17 @@ const index = {
 // Colors
 const colors = [
   'blueA400',
+  'grey200',
+  'grey50',
   'lime100',
   'lime50',
   'pink500',
   'red500',
+  'redA400',
+  'redA700',
   'white',
   'yellow500',
   'yellow600',
-  'grey50',
-  'grey200',
 ].reduce((c, n) => {
   c[n] = Styles.Colors[n];
   return c;
