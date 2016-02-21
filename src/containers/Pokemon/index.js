@@ -47,7 +47,9 @@ class Pokemon extends Component {
     return (
       <div>
         <div className={styles.topWrap}>
-          <Title text={name} />
+          <div className={styles.titleHolder}>
+            <Title text={name} />
+          </div>
           <div className={styles.listWrap}>
             <List>
               <ListItem
