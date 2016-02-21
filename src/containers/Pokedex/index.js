@@ -17,7 +17,7 @@ function mapStateToProps({ pokemons, filter }) {
 
   return {
     list: value.length ? filter.list : pokemons.list,
-    noMatches: !filter.list.length,
+    noMatches: value.length && !filter.list.length,
   }
 }
 
