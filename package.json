@@ -8,11 +8,6 @@
     "watch:test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --watch",
     "start": "webpack-dev-server --progress --colors"
   },
-  "browserify": {
-    "transform": [
-      "babelify"
-    ]
-  },
   "keywords": [],
   "author": "",
   "license": "MIT",
