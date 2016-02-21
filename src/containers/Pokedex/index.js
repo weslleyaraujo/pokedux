@@ -5,15 +5,19 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as pokemonsActions from '../../actions/pokemons';
+import styles from './Pokedex.css';
 import PokedexList from '../../components/PokedexList';
 import PokedexItem from '../../components/PokedexItem';
 import Paginator from '../../components/Paginator';
+import Warning from '../../components/Warning';
+
 
 function mapStateToProps({ pokemons, filter }) {
-  let { list } = pokemons;
+  let { value } = filter;
 
   return {
-    list,
+    list: value.length ? filter.list : pokemons.list,
+    noMatches: !filter.list.length,
   }
 }
 
@@ -52,15 +56,25 @@ class Pokedex extends Component {
     });
   }
 
-  render() {
+  renderPokedex() {
     let { page } = this.props.location.query;
     let { list } = this.props;
-    let blocks = chunk(list, 10);
+    let blocks = chunk(list, 10); // TODO: change to app constants
 
     return (
       <div>
         <PokedexList list={blocks[page ? (page - 1) : 0] || []} />
         <Paginator pageNum={blocks.length} onClick={::this.onPaginatorClick} />
+      </div>
+    );
+  }
+
+  render() {
+    let { noMatches } = this.props;
+
+    return (
+      <div className={styles.root}>
+        { noMatches ?  <Warning text='Could not find any matches'/> : this.renderPokedex() }
       </div>
     );
   }

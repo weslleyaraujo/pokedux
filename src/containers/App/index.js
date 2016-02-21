@@ -28,7 +28,7 @@ function mapDispatchToProps(dispatch) {
 class App extends Component {
 
   onSearchSubmit(data) {
-    let { actions, pokedex } = this.props;
+    let { actions, pokemons } = this.props;
     let { push } = this.props.history;
     let { value } = data.target;
 
@@ -38,7 +38,7 @@ class App extends Component {
 
     push('/pokedex');
     actions.filterPokemon({
-      list: pokedex.pokemons,
+      list: pokemons.list,
       value,
     });
   }
