@@ -1,7 +1,7 @@
-import getPokemonId from '../helpers/get-pokemon-id';
-import getEntrypointFor from '../helpers/get-entrypoint-for';
-import * as actionTypes from '../constants/actionTypes'
-import { POKEAPI_IMAGE_URL, POKEAPI_ROOT_URL } from '../constants/services';
+import getPokemonId from 'helpers/get-pokemon-id';
+import getEntrypointFor from 'helpers/get-entrypoint-for';
+import * as actionTypes from 'constants/actionTypes'
+import { POKEAPI_IMAGE_URL, POKEAPI_ROOT_URL } from 'constants/services';
 
 export const INITIAL_STATE = {
   name: '',

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { List, ListItem, Divider } from 'material-ui';
 import { FaHandGrabO, FaShield, FaBarChart, FaSmileO, FaArrowsV, FaHeart } from 'react-icons';
 
-import * as pokemonActions from '../../actions/pokemon';
+import * as pokemonActions from 'actions/pokemon';
 import styles from './Pokemon.css';
-import Title from '../../components/title';
+import Title from 'components/Title';
 
 function mapStateToProps({ pokemon }) {
   return {

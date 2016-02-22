@@ -11,11 +11,11 @@ let history = createHashHistory({
   queryKey: false
 });
 
-import App from './containers/App';
-import Pokedex from './containers/Pokedex';
-import Pokemon from './containers/Pokemon';
-import DevTools from './containers/DevTools';
-import configureStore from './store/configureStore';
+import App from 'containers/App';
+import Pokedex from 'containers/Pokedex';
+import Pokemon from 'containers/Pokemon';
+import DevTools from 'containers/DevTools';
+import configureStore from 'store/configureStore';
 
 let store = configureStore();
 

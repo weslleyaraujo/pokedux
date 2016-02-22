@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Link } from 'react-router';
 import styles from './PokedexList.css';
-import PokedexItem from '../PokedexItem';
+import PokedexItem from 'components/PokedexItem';
 
 const PokedexList = ({
   list,

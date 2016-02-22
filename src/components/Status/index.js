@@ -5,7 +5,7 @@ import { random, times } from 'lodash';
 import { LinearProgress } from 'material-ui';
 
 import styles from './Status.css';
-import { NULL_STATUS, NETWORK_ERROR } from '../../constants/status'
+import { NULL_STATUS, NETWORK_ERROR } from 'constants/status'
 
 // TODO: update to something more smart than this.
 const images = times(4).map((x) => require(`./images/0${x}.gif`));
