@@ -1,5 +1,5 @@
-import { SET_STATUS } from '../constants/actionTypes';
-import { NULL_STATUS, NULL_STATUS_MESSAGE, } from '../constants/status';
+import { SET_STATUS } from 'constants/actionTypes';
+import { NULL_STATUS, NULL_STATUS_MESSAGE, } from 'constants/status';
 
 export const INITIAL_STATE = {
   status: NULL_STATUS,

@@ -18,6 +18,13 @@ export default {
     './src/index'
   ],
 
+  resolve: {
+    modulesDirectories: [
+      'node_modules',
+      'src'
+    ]
+  },
+
   output: {
     path: path.join(__dirname, 'dist'),
     filename,

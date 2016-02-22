@@ -4,12 +4,12 @@ import { chunk } from 'lodash';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as pokemonsActions from '../../actions/pokemons';
+import * as pokemonsActions from 'actions/pokemons';
 import styles from './Pokedex.css';
-import PokedexList from '../../components/PokedexList';
-import PokedexItem from '../../components/PokedexItem';
-import Paginator from '../../components/Paginator';
-import Warning from '../../components/Warning';
+import PokedexList from 'components/PokedexList';
+import PokedexItem from 'components/PokedexItem';
+import Paginator from 'components/Paginator';
+import Warning from 'components/Warning';
 
 
 function mapStateToProps({ pokemons, filter }) {

@@ -3,8 +3,8 @@ import { reduxReactRouter } from 'redux-router';
 import { createHistory } from 'history';
 import thunk from 'redux-thunk';
 
-import rootReducer from '../reducers/rootReducer';
-import DevTools from '../containers/DevTools';
+import rootReducer from 'reducers/rootReducer';
+import DevTools from 'containers/DevTools';
 
 const createStoreWithMiddleware = compose(
   applyMiddleware(thunk),
@@ -12,7 +12,7 @@ const createStoreWithMiddleware = compose(
   reduxReactRouter({ createHistory })
 )(createStore);
 
-const root = '../reducers/rootReducer'
+const root = 'reducers/rootReducer'
 
 export default function configureStore(initialState) {
   const store = createStoreWithMiddleware(rootReducer, initialState);

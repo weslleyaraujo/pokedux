@@ -2,7 +2,7 @@ import React from 'react';
 import { AppBar, AutoComplete, TextField } from 'material-ui';
 
 import Pokeball from './Pokeball';
-import navigate from '../helpers/navigate';
+import navigate from 'helpers/navigate';
 
 const Header = ({
   history,
@@ -11,7 +11,7 @@ const Header = ({
   onSearchSubmit,
 }) => (
   <header>
-    <AppBar 
+    <AppBar
       style={{
         paddingLeft: 60
       }}

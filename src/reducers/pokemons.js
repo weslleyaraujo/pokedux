@@ -1,6 +1,6 @@
 import { chunk } from 'lodash';
 
-import * as actionTypes from '../constants/actionTypes';
+import * as actionTypes from 'constants/actionTypes';
 import { pokemon } from './pokemon';
 
 export const INITIAL_STATE = {

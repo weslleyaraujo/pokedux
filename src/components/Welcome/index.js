@@ -1,7 +1,7 @@
 import React from 'react';
 
 import styles from './Welcome.css';
-import navigate from '../../helpers/navigate';
+import navigate from 'helpers/navigate';
 
 const Welcome = ({
   history,

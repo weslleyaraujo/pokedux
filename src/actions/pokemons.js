@@ -1,8 +1,8 @@
 import fetch from 'isomorphic-fetch';
 import { polyfill } from 'es6-promise';
 
-import * as actionTypes from '../constants/actionTypes'
-import getEntrypointFor from '../helpers/get-entrypoint-for';
+import * as actionTypes from 'constants/actionTypes'
+import getEntrypointFor from 'helpers/get-entrypoint-for';
 import { setStatus } from './status';
 import {
   LOADING_STATUS,
@@ -10,7 +10,7 @@ import {
   NULL_STATUS,
   NETWORK_ERROR,
   NETWORK_ERROR_MESSAGE
-}  from '../constants/status';
+}  from 'constants/status';
 
 export function fetchPokedexSuccess(data) {
   return {

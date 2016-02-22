@@ -1,10 +1,10 @@
 import fetch from 'isomorphic-fetch';
 import { polyfill } from 'es6-promise';
 
-import * as actionTypes from '../constants/actionTypes'
-import * as statusConstants from '../constants/status';
+import * as actionTypes from 'constants/actionTypes'
+import * as statusConstants from 'constants/status';
 import { setStatus } from './status';
-import getEntrypointFor from '../helpers/get-entrypoint-for';
+import getEntrypointFor from 'helpers/get-entrypoint-for';
 
 export function fetchPokemonSuccess(data) {
   return {

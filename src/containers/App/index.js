@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { Paper } from 'material-ui';
 
-import * as pokemonActions from '../../actions/pokemon';
-import Status from '../../components/Status';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import Welcome from '../../components/Welcome';
-import { GITHUB_REPO_URL, TWITTER_PROFILE_URL, TWITTER_PROFILE } from '../../constants/appConfig';
+import * as pokemonActions from 'actions/pokemon';
+import Status from 'components/Status';
+import Header from 'components/Header';
+import Footer from 'components/Footer';
+import Welcome from 'components/Welcome';
+import { GITHUB_REPO_URL, TWITTER_PROFILE_URL, TWITTER_PROFILE } from 'constants/appConfig';
 import styles from './App.css';
 
 function mapStateToProps({ status, pokemons }) {

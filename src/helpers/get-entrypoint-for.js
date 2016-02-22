@@ -3,7 +3,7 @@ import {
   POKEAPI_POKEDEX_URL,
   POKEAPI_POKEMON_URL,
   POKEAPI_IMAGE_URL,
-} from '../constants/services';
+} from 'constants/services';
 
 const alias = {
   root: '',
