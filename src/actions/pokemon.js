@@ -2,8 +2,15 @@ import fetch from 'isomorphic-fetch';
 import { polyfill } from 'es6-promise';
 
 import * as actionTypes from 'constants/actionTypes'
-import * as statusConstants from 'constants/status';
 import { setStatus } from './status';
+import {
+  LOADING_STATUS,
+  LOADING_STATUS_MESSAGE,
+  NULL_STATUS,
+  NETWORK_ERROR,
+  NETWORK_ERROR_MESSAGE
+}  from 'constants/status';
+
 import getEntrypointFor from 'helpers/get-entrypoint-for';
 
 export function fetchPokemonSuccess(data) {
@@ -14,34 +21,29 @@ export function fetchPokemonSuccess(data) {
 }
 
 export function fetchPokemon(data) {
-  return dispatch => {
-    let { id } = data;
-    let action = setStatus({
-      status: statusConstants.LOADING_STATUS,
-      message: statusConstants.LOADING_STATUS_MESSAGE
-    });
 
-    dispatch(action);
+  return dispatch => {
+
+    let { id } = data;
+    dispatch(setStatus({
+      status: LOADING_STATUS,
+      message: LOADING_STATUS_MESSAGE,
+    }));
 
     return fetch(getEntrypointFor('pokemon', id))
-      .then((response) => response.json())
-      .then((data) => {
-        let action = setStatus({
-          status: statusConstants.NULL_STATUS
-        });
+      .then(r => r.json())
+      .then(d => {
+        dispatch(setStatus({
+          status: NULL_STATUS,
+        }));
 
-        dispatch(action);
-        dispatch(fetchPokemonSuccess(data));
-
+        dispatch(fetchPokemonSuccess(d));
       })
-      .catch((error) => {
-        let action = setStatus({
-          status: statusConstants.NETWORK_ERROR,
-          message: statusConstants.NETWORK_ERROR_MESSAGE
-        });
-
-        dispatch(action);
-
+      .catch((e) => {
+        dispatch(setStatus({
+          status: NETWORK_ERROR,
+          message: NETWORK_ERROR_MESSAGE
+        }));
       });
   }
 }
