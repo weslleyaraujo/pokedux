@@ -9,7 +9,7 @@ const alias = {
   root: '',
   pokedex: POKEAPI_POKEDEX_URL,
   image: POKEAPI_IMAGE_URL,
-  pokemon: POKEAPI_POKEMON_URL
+  pokemon: POKEAPI_POKEMON_URL,
 }
 
 export default function getEntrypointFor(path = '', aditional = '') {
