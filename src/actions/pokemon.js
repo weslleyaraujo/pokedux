@@ -25,23 +25,32 @@ export function fetchPokemon(data) {
 
   return dispatch => {
     let { id } = data;
+
     dispatch(setStatus({
       status: LOADING_STATUS,
       message: LOADING_STATUS_MESSAGE,
     }));
 
-    return fetch(getEntrypointFor('pokemon', id))
-      .then(r => r.json())
-      .then(d => {
-        dispatch(fetchPokemonSuccess(d));
-        dispatch(fetchDescription(d))
-      })
-      .catch(e => {
-        dispatch(setStatus({
-          status: NETWORK_ERROR,
-          message: NETWORK_ERROR_MESSAGE
-        }));
-      });
+    let request = fetch(getEntrypointFor('pokemon', id))
+    .then(r => r.json())
+    .then(d => {
+      dispatch(fetchPokemonSuccess(d));
+      dispatch(fetchDescription(d))
+    })
+    .catch(e => {
+      dispatch(setStatus({
+        status: NETWORK_ERROR,
+        message: NETWORK_ERROR_MESSAGE
+      }));
+    });
+
+    return {
+      abort: () => {
+        console.log(request);
+        debugger;
+      },
+    }
+
   }
 }
 

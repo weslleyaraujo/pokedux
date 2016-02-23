@@ -22,10 +22,18 @@ function mapDispatchToProps(dispatch) {
 
 class Pokemon extends Component {
 
+  state = {
+    requests: [],
+  }
+
   componentDidMount() {
     let { id } = this.props.params;
     let { actions } = this.props;
-    actions.fetchPokemon({ id });
+    this.state.requests.push(actions.fetchPokemon({ id }));
+  }
+
+  componentWillUnmount() {
+    this.state.requests.forEach(x => x.abort());
   }
 
   render() {
