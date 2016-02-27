@@ -47,6 +47,7 @@ class Pokemon extends Component {
       hp,
       image,
       name,
+      description,
     } = this.props.pokemon;
 
     let { id } = this.props.params;
@@ -87,7 +88,7 @@ class Pokemon extends Component {
         </div>
         <div className={styles.content}>
           <div>
-            <p>This legendary Chinese POKEMON is considered magnif icent. Many people are enchanted by its grand mane.</p>
+            <p>{description}</p>
           </div>
         </div>
         <a onClick={goBack} >Return</a>

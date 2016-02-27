@@ -1,6 +1,4 @@
-import fetch from 'isomorphic-fetch';
-import { polyfill } from 'es6-promise';
-
+import { ajax } from 'jquery';
 import * as actionTypes from 'constants/actionTypes';
 import getEntrypointFor from 'helpers/get-entrypoint-for';
 import { setStatus } from './status';
@@ -31,24 +29,19 @@ export function fetchPokemon(data) {
       message: LOADING_STATUS_MESSAGE,
     }));
 
-    let request = fetch(getEntrypointFor('pokemon', id))
-    .then(r => r.json())
-    .then(d => {
-      dispatch(fetchPokemonSuccess(d));
-      dispatch(fetchDescription(d))
-    })
-    .catch(e => {
+    let request = ajax(getEntrypointFor('pokemon', id));
+
+    request.then(d => {
+      dispatch(fetchDescription(d));
+    }).fail(({ statusText }) => {
       dispatch(setStatus({
-        status: NETWORK_ERROR,
-        message: NETWORK_ERROR_MESSAGE
+        status: statusText !== 'abort' ? NETWORK_ERROR : NULL_STATUS,
+        message: statusText !== 'abort' ? NETWORK_ERROR_MESSAGE : '',
       }));
     });
 
     return {
-      abort: () => {
-        console.log(request);
-        debugger;
-      },
+      abort: () => request.abort(),
     }
 
   }
