@@ -5,6 +5,7 @@ import { pokemons } from './pokemons';
 import { status } from './status';
 import { pokemon } from './pokemon';
 import { filter } from './filter';
+import { description } from './description';
 
 export default combineReducers({
   router,
@@ -12,4 +13,5 @@ export default combineReducers({
   status,
   pokemon,
   filter,
+  description,
 });

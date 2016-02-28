@@ -3,19 +3,24 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as pokemonActions from 'actions/pokemon';
+import * as descriptionActions from 'actions/description';
 import styles from './Pokemon.css';
 import Title from 'components/Title';
 import PokemonStatus from 'components/PokemonStatus';
 
-function mapStateToProps({ pokemon }) {
+function mapStateToProps({ description, pokemon }) {
   return {
     pokemon,
+    description,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(pokemonActions, dispatch)
+    actions: bindActionCreators({
+      ...pokemonActions,
+      ...descriptionActions,
+    }, dispatch),
   }
 }
 
@@ -26,9 +31,19 @@ class Pokemon extends Component {
   }
 
   componentDidMount() {
-    let { id } = this.props.params;
+    let { id, pokemon } = this.props.params;
     let { actions } = this.props;
     this.state.requests.push(actions.fetchPokemon({ id }));
+  }
+
+  componentWillReceiveProps({ pokemon, description }) {
+    let { descriptions } = pokemon;
+    let { text } = description;
+    let { actions } = this.props;
+
+    if (!text && descriptions.length) {
+      this.state.requests.push(actions.fetchDescription(pokemon));
+    }
   }
 
   componentWillUnmount() {
@@ -37,7 +52,8 @@ class Pokemon extends Component {
 
   render() {
     let { pokemon } = this.props;
-    let { name, image, description } = this.props.pokemon;
+    let { text } = this.props.description;
+    let { name, image } = this.props.pokemon;
     let { id } = this.props.params;
     let { goBack } = this.props.history;
 
@@ -49,7 +65,7 @@ class Pokemon extends Component {
           </div>
           <div className={styles.content}>
             <div>
-              <p>{description}</p>
+              <p>{text}</p>
             </div>
           </div>
           <PokemonStatus {...pokemon} />

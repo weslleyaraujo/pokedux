@@ -32,7 +32,7 @@ export function fetchPokemon(data) {
     let request = ajax(getEntrypointFor('pokemon', id));
 
     request.then(d => {
-      dispatch(fetchDescription(d));
+      dispatch(fetchPokemonSuccess(d));
     }).fail(({ statusText }) => {
       dispatch(setStatus({
         status: statusText !== 'abort' ? NETWORK_ERROR : NULL_STATUS,
