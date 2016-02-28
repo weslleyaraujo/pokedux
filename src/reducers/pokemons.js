@@ -24,6 +24,6 @@ export function pokemons(state = INITIAL_STATE, action) {
       }
 
     default:
-      return state;
+      return INITIAL_STATE;
   }
 };
