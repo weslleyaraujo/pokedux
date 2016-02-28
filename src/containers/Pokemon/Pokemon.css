@@ -1,5 +1,7 @@
 .content {
+  width: 50%;
   padding: 0.5em 1.6em;
+  margin: 0 auto;
 }
 
 .image {
@@ -16,12 +18,7 @@
   overflow: hidden;
 }
 
-.titleHolder {
-  padding: .3em;
-}
-
-.listWrap {
-  width: 50%;
-  float: left;
-  border-right: 1px solid $colors--grey200;
+.title {
+  text-align: center;
+  font-size: 2em;
 }

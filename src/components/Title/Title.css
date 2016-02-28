@@ -1,10 +1,9 @@
 .root {
   padding-bottom: .3em;
-  font-size: 1.5em;
+  font-size: 2em;
   line-height: 1.334;
-  border-bottom: 1px solid $colors--grey200;
-  font-weight: lighter;
   margin-bottom: 0;
+  text-align: center;
 }
 
 

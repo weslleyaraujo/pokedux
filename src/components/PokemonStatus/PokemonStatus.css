@@ -1,0 +1,19 @@
+.root {
+  width: 50%;
+  float: left;
+}
+
+.table {
+  width: 100%;
+  text-align: left;
+}
+
+.label {
+  text-align: left !important;
+}
+
+.table :global td {
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid $colors--grey200;
+}
