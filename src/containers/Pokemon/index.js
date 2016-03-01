@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { RaisedButton } from 'material-ui';
 
 import * as pokemonActions from 'actions/pokemon';
 import * as descriptionActions from 'actions/description';
@@ -33,6 +34,7 @@ class Pokemon extends Component {
   componentDidMount() {
     let { id, pokemon } = this.props.params;
     let { actions } = this.props;
+
     this.state.requests.push(actions.fetchPokemon({ id }));
   }
 
@@ -52,9 +54,8 @@ class Pokemon extends Component {
 
   render() {
     let { pokemon } = this.props;
+    let { name, image } = pokemon;
     let { text } = this.props.description;
-    let { name, image } = this.props.pokemon;
-    let { id } = this.props.params;
     let { goBack } = this.props.history;
 
     return (
@@ -74,7 +75,7 @@ class Pokemon extends Component {
             src={image}
             alt={name} />
         </div>
-        <a onClick={goBack} >Return</a>
+        <RaisedButton onClick={goBack} label='Return'/>
       </div>
     );
   }
