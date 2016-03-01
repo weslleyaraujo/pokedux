@@ -41,7 +41,7 @@ class Pokemon extends Component {
     let { text } = description;
     let { actions } = this.props;
 
-    if (!text && descriptions.length) {
+    if (this.state.requests.length === 1) {
       this.state.requests.push(actions.fetchDescription(pokemon));
     }
   }
