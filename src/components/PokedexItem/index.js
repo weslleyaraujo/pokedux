@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+
 import styles from './PokedexItem.css';
+import PokemonImage from 'components/PokemonImage';
 
 const PokedexItem = ({
   image,
@@ -11,7 +13,7 @@ const PokedexItem = ({
   <li className={styles.root}>
     <Link to={path}>
       <p>{name}</p>
-      <img className={styles.image} src={image} />
+      <PokemonImage width={70} src={image} className={styles.image}/>
     </Link>
   </li>
 );

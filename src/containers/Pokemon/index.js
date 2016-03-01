@@ -8,6 +8,7 @@ import * as descriptionActions from 'actions/description';
 import styles from './Pokemon.css';
 import Title from 'components/Title';
 import PokemonStatus from 'components/PokemonStatus';
+import PokemonImage from 'components/PokemonImage';
 
 function mapStateToProps({ description, pokemon }) {
   return {
@@ -70,10 +71,7 @@ class Pokemon extends Component {
             </div>
           </div>
           <PokemonStatus {...pokemon} />
-          <img
-            className={styles.image}
-            src={image}
-            alt={name} />
+          <PokemonImage className={styles.image} src={image} alt={name}/>
         </div>
         <RaisedButton onClick={goBack} label='Return'/>
       </div>
