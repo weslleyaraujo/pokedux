@@ -1,8 +1,8 @@
-import fetch from 'isomorphic-fetch';
-import { polyfill } from 'es6-promise';
-
-import * as actionTypes from 'constants/actionTypes'
+import { ajax } from 'jquery';
+import * as actionTypes from 'constants/actionTypes';
+import getEntrypointFor from 'helpers/get-entrypoint-for';
 import { setStatus } from './status';
+import { fetchDescription } from 'actions/description';
 import {
   LOADING_STATUS,
   LOADING_STATUS_MESSAGE,
@@ -11,7 +11,6 @@ import {
   NETWORK_ERROR_MESSAGE
 }  from 'constants/status';
 
-import getEntrypointFor from 'helpers/get-entrypoint-for';
 
 export function fetchPokemonSuccess(data) {
   return {
@@ -23,28 +22,28 @@ export function fetchPokemonSuccess(data) {
 export function fetchPokemon(data) {
 
   return dispatch => {
-
     let { id } = data;
+
     dispatch(setStatus({
       status: LOADING_STATUS,
       message: LOADING_STATUS_MESSAGE,
     }));
 
-    return fetch(getEntrypointFor('pokemon', id))
-      .then(r => r.json())
-      .then(d => {
-        dispatch(setStatus({
-          status: NULL_STATUS,
-        }));
+    let request = ajax(getEntrypointFor('pokemon', id));
 
-        dispatch(fetchPokemonSuccess(d));
-      })
-      .catch((e) => {
-        dispatch(setStatus({
-          status: NETWORK_ERROR,
-          message: NETWORK_ERROR_MESSAGE
-        }));
-      });
+    request.then(d => {
+      dispatch(fetchPokemonSuccess(d));
+    }).fail(({ statusText }) => {
+      dispatch(setStatus({
+        status: statusText !== 'abort' ? NETWORK_ERROR : NULL_STATUS,
+        message: statusText !== 'abort' ? NETWORK_ERROR_MESSAGE : '',
+      }));
+    });
+
+    return {
+      abort: () => request.abort(),
+    }
+
   }
 }
 

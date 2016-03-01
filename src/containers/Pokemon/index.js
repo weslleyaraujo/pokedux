@@ -1,47 +1,61 @@
 import React, { Component, PropTypes } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { List, ListItem, Divider } from 'material-ui';
-import { FaHandGrabO, FaShield, FaBarChart, FaSmileO, FaArrowsV, FaHeart } from 'react-icons';
+import { RaisedButton } from 'material-ui';
 
 import * as pokemonActions from 'actions/pokemon';
+import * as descriptionActions from 'actions/description';
 import styles from './Pokemon.css';
 import Title from 'components/Title';
+import PokemonStatus from 'components/PokemonStatus';
 
-function mapStateToProps({ pokemon }) {
+function mapStateToProps({ description, pokemon }) {
   return {
     pokemon,
+    description,
   }
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(pokemonActions, dispatch)
+    actions: bindActionCreators({
+      ...pokemonActions,
+      ...descriptionActions,
+    }, dispatch),
   }
 }
 
 class Pokemon extends Component {
 
+  state = {
+    requests: [],
+  }
+
   componentDidMount() {
-    let { id } = this.props.params;
+    let { id, pokemon } = this.props.params;
     let { actions } = this.props;
-    actions.fetchPokemon({ id });
+
+    this.state.requests.push(actions.fetchPokemon({ id }));
+  }
+
+  componentWillReceiveProps({ pokemon, description }) {
+    let { descriptions } = pokemon;
+    let { text } = description;
+    let { actions } = this.props;
+
+    if (this.state.requests.length === 1) {
+      this.state.requests.push(actions.fetchDescription(pokemon));
+    }
+  }
+
+  componentWillUnmount() {
+    this.state.requests.forEach(x => x.abort());
   }
 
   render() {
-    let {
-      attack,
-      catch_rate,
-      defense,
-      exp,
-      happiness,
-      height,
-      hp,
-      image,
-      name,
-    } = this.props.pokemon;
-
-    let { id } = this.props.params;
+    let { pokemon } = this.props;
+    let { name, image } = pokemon;
+    let { text } = this.props.description;
     let { goBack } = this.props.history;
 
     return (
@@ -50,39 +64,18 @@ class Pokemon extends Component {
           <div className={styles.titleHolder}>
             <Title text={name} />
           </div>
-          <div className={styles.listWrap}>
-            <List>
-              <ListItem
-                disabled={true}
-                primaryText={<span><FaHandGrabO /><strong> Attack:</strong> {attack}</span>}/>
-              <ListItem
-                disabled={true}
-                primaryText={<span><FaShield /><strong> Defense:</strong> {defense}</span>}/>
-              <ListItem
-                disabled={true}
-                primaryText={<span><FaBarChart /><strong> Catch Rate: </strong>{defense}</span>}/>
-              <ListItem
-                disabled={true}
-                primaryText={<span><FaSmileO /><strong> Happiness: </strong>{happiness}</span>}/>
-              <ListItem
-                disabled={true}
-                primaryText={<span><FaArrowsV /><strong> Height: </strong>{height}</span>}/>
-              <ListItem
-                disabled={true}
-                primaryText={<span><FaHeart /><strong> HP: </strong>{hp}</span>}/>
-            </List>
+          <div className={styles.content}>
+            <div>
+              <p>{text}</p>
+            </div>
           </div>
+          <PokemonStatus {...pokemon} />
           <img
             className={styles.image}
             src={image}
             alt={name} />
         </div>
-        <div className={styles.content}>
-          <div>
-            <p>This legendary Chinese POKEMON is considered magnif icent. Many people are enchanted by its grand mane.</p>
-          </div>
-        </div>
-        <a onClick={goBack} >Return</a>
+        <RaisedButton onClick={goBack} label='Return'/>
       </div>
     );
   }

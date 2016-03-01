@@ -27,7 +27,6 @@
 .active {
   composes: root;
   background-color: $colors--pink500;
-  transition: 0.3s;
   width: 100%;
   height: 100%
 }

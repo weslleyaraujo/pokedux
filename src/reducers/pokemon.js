@@ -7,10 +7,11 @@ export const INITIAL_STATE = {
   name: '',
   resource_uri: '',
   image: '',
-  id: ''
+  id: '',
+  descriptions: [],
 };
 
-export function pokemon (state = INITIAL_STATE, action) {
+export function pokemon(state = INITIAL_STATE, action) {
   let id = getPokemonId(action.data ? action.data.resource_uri : state.resource_uri);
   let image = getEntrypointFor('image', `${id}.png`);
   let path = `/pokemon/${id}`;
