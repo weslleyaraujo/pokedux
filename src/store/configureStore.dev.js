@@ -4,12 +4,11 @@ import { createHistory } from 'history';
 import thunk from 'redux-thunk';
 
 import rootReducer from 'reducers/rootReducer';
-import DevTools from 'containers/DevTools';
 
 const createStoreWithMiddleware = compose(
   applyMiddleware(thunk),
-  DevTools.instrument(),
-  reduxReactRouter({ createHistory })
+  reduxReactRouter({ createHistory }),
+  window.devToolsExtension ? window.devToolsExtension() : f => f,
 )(createStore);
 
 const root = 'reducers/rootReducer'

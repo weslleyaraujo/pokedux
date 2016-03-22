@@ -1,5 +1,4 @@
 import React from 'react';
-import LogMonitor from 'redux-devtools-log-monitor';
 import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
@@ -14,7 +13,6 @@ let history = createHashHistory({
 import App from 'containers/App';
 import Pokedex from 'containers/Pokedex';
 import Pokemon from 'containers/Pokemon';
-import DevTools from 'containers/DevTools';
 import configureStore from 'store/configureStore';
 
 let store = configureStore();
@@ -31,7 +29,6 @@ render(
         </ReduxRouter>
       </Router>
     </Provider>
-    <DevTools store={store}/>
   </div>,
 
   document.querySelector('#app')
