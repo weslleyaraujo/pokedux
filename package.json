@@ -11,9 +11,7 @@
   "gh-pages-deploy": {
     "staticpath": "dist",
     "prep": [
-      "webpack -p",
-    ],
-    "post": [
+      "webpack -p"
     ],
     "noprompt": false
   },
