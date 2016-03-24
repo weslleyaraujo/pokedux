@@ -65,13 +65,15 @@ class Pokemon extends Component {
           <div className={styles.titleHolder}>
             <Title text={name} />
           </div>
-          <div className={styles.content}>
-            <div>
-              <p>{text}</p>
-            </div>
+          <div>
+            <PokemonStatus {...pokemon} />
+            <PokemonImage className={styles.image} src={image} alt={name}/>
           </div>
-          <PokemonStatus {...pokemon} />
-          <PokemonImage className={styles.image} src={image} alt={name}/>
+        </div>
+        <div className={styles.content}>
+          <div>
+            <p>{text}</p>
+          </div>
         </div>
         <RaisedButton onClick={goBack} label='Return'/>
       </div>
