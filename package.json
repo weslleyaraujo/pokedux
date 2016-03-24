@@ -6,7 +6,7 @@
   "scripts": {
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive",
     "watch:test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --watch",
-    "start": "webpack-dev-server --progress --colors",
+    "start": "webpack-dev-server --progress --colors"
   },
   "gh-pages-deploy": {
     "staticpath": "dist",
