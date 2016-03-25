@@ -7,8 +7,7 @@
     "test": "ava",
     "watch:test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --watch src",
     "start": "webpack-dev-server --progress --colors",
-    "deploy": "gh-pages-deploy",
-    "clean-deploy": "rm *.gif *.png bundle.js"
+    "deploy": "gh-pages-deploy"
   },
   "ava": {
     "files": [
@@ -27,14 +26,11 @@
     "babel": "inherit"
   },
   "gh-pages-deploy": {
-    "staticpath": "dist",
+    "staticpath": ".",
     "prep": [
       "webpack -p"
     ],
-    "post": [
-      "clean-deploy"
-    ],
-    "noprompt": false
+    "noprompt": true
   },
   "keywords": [],
   "author": "",
