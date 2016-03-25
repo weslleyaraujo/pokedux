@@ -5,18 +5,34 @@ import autoprefixer from 'autoprefixer';
 import nested from 'postcss-nested';
 import vars from 'postcss-simple-vars';
 
+const { NODE_ENV } = process.env;
 import cssConfig from './src/css-config';
 const filename = 'bundle.js';
-const publicPath = './dist/';
+const publicPath = NODE_ENV === 'production'? './dist/' : '/dist/';
+
+let entry = [];
+let config = {};
+
+if (NODE_ENV !== 'production') {
+  entry.push('webpack-dev-server/client?http://localhost:3000');
+  entry.push('webpack/hot/only-dev-server');
+	config.devServer = {
+		historyApiFallback: true,
+		hot: true,
+		inline: true,
+		progress: true,
+		port: 3000,
+	};
+}
+
+entry.push('./src/index');
 
 export default {
+  ...config,
+
   devtool: 'eval',
 
-  entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './src/index'
-  ],
+  entry,
 
   resolve: {
     modulesDirectories: [
@@ -74,12 +90,4 @@ export default {
       }
     }),
   ],
-
-  devServer: {
-    historyApiFallback: true,
-    hot: true,
-    inline: true,
-    progress: true,
-    port: 3000
-  },
 }
