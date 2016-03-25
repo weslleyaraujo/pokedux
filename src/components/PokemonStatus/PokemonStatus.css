@@ -1,6 +1,6 @@
 .root {
   width: 50%;
-  float: left;
+  margin: 0 auto;
 }
 
 .table {

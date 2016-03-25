@@ -60,22 +60,20 @@ class Pokemon extends Component {
     let { goBack } = this.props.history;
 
     return (
-      <div>
+      <div className={styles.root}>
         <div className={styles.topWrap}>
           <div className={styles.titleHolder}>
-            <Title text={name} />
+            <Title text={name} /> <br />
           </div>
-          <div>
-            <PokemonStatus {...pokemon} />
-            <PokemonImage className={styles.image} src={image} alt={name}/>
-          </div>
-        </div>
-        <div className={styles.content}>
-          <div>
+          <PokemonImage className={styles.image} src={image} alt={name}/>
+          <div className={styles.content}>
             <p>{text}</p>
           </div>
+          <PokemonStatus {...pokemon} />
+          <div className={styles.bottom}>
+            <RaisedButton secondary={true} onClick={goBack} label='Return'/>
+          </div>
         </div>
-        <RaisedButton onClick={goBack} label='Return'/>
       </div>
     );
   }

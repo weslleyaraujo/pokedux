@@ -1,3 +1,6 @@
+.root {
+  text-align: center;
+}
 .content {
   width: 50%;
   padding: 0.5em 1.6em;
@@ -6,10 +9,9 @@
 
 .image {
   image-rendering: pixelated;
-  width: 180px;
+  width: 200px;
   display: block;
-  margin-right: 0.5em;
-  float: right;
+  margin: 0 auto;
 }
 
 .topWrap {
@@ -20,4 +22,8 @@
 .title {
   text-align: center;
   font-size: 2em;
+}
+
+.bottom {
+  margin: 1em 0;
 }
