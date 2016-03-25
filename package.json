@@ -7,7 +7,7 @@
     "test": "ava",
     "watch:test": "NODE_ENV=test mocha --compilers js:babel-core/register --recursive --watch src",
     "start": "webpack-dev-server --progress --colors",
-    "deploy": "gh-pages-deploy"
+    "deploy": "./deploy.sh"
   },
   "ava": {
     "files": [
@@ -25,13 +25,6 @@
     ],
     "babel": "inherit"
   },
-  "gh-pages-deploy": {
-    "staticpath": ".",
-    "prep": [
-      "webpack -p"
-    ],
-    "noprompt": true
-  },
   "keywords": [],
   "author": "",
   "license": "MIT",
@@ -45,9 +38,10 @@
     "babel-preset-stage-0": "^6.3.13",
     "chai": "^3.4.1",
     "css-loader": "^0.23.0",
+    "exec": "^0.2.1",
     "extract-text-webpack-plugin": "^0.9.1",
     "file-loader": "^0.8.5",
-    "gh-pages-deploy": "^0.4.1",
+    "gh-pages": "^0.11.0",
     "image-webpack-loader": "^1.6.2",
     "jquery": "^2.2.1",
     "mocha": "^2.3.4",

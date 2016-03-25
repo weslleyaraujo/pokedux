@@ -48,3 +48,4 @@ dist/index.html
 coverage/
 resources/
 dist
+deploy-dir/
