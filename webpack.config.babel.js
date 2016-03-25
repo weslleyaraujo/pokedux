@@ -7,7 +7,7 @@ import vars from 'postcss-simple-vars';
 
 import cssConfig from './src/css-config';
 const filename = 'bundle.js';
-const publicPath = '/static/';
+const publicPath = '/dist/';
 
 export default {
   devtool: 'eval',
