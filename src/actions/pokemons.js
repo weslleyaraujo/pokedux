@@ -1,5 +1,5 @@
-import fetch from 'isomorphic-fetch';
-import { polyfill } from 'es6-promise';
+import { ajax, noop } from 'jquery';
+import ls from 'local-storage';
 
 import * as actionTypes from 'constants/actionTypes'
 import getEntrypointFor from 'helpers/get-entrypoint-for';
@@ -20,28 +20,41 @@ export function fetchPokedexSuccess(data) {
 }
 
 export function fetchPokedex() {
+  const url = getEntrypointFor('pokedex');
+  const cache = ls(url);
 
   return dispatch => {
+
+    if (cache) {
+      dispatch(fetchPokedexSuccess(cache));
+      return {
+        abort: noop,
+      };
+    }
 
     dispatch(setStatus({
       status: LOADING_STATUS,
       message: LOADING_STATUS_MESSAGE,
     }));
 
-    return fetch(getEntrypointFor('pokedex'))
-      .then(r => r.json())
-      .then(d => {
-        dispatch(setStatus({
-          status: NULL_STATUS,
-        }));
+    const request = ajax(url);
 
-        dispatch(fetchPokedexSuccess(d));
-      })
-      .catch((e) => {
-        dispatch(setStatus({
-          status: NETWORK_ERROR,
-          message: NETWORK_ERROR_MESSAGE
-        }));
-      });
+    request.then(d => {
+      ls(url, d);
+      dispatch(setStatus({
+        status: NULL_STATUS,
+      }));
+
+      dispatch(fetchPokedexSuccess(d));
+    }).fail(({ statusText }) => {
+      dispatch(setStatus({
+        status: statusText !== 'abort' ? NETWORK_ERROR : NULL_STATUS,
+        message: statusText !== 'abort' ? NETWORK_ERROR_MESSAGE : '',
+      }));
+    });
+
+    return {
+      abort: () => request.abort(),
+    }
   };
 }

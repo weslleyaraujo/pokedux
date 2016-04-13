@@ -1,4 +1,6 @@
-import { ajax } from 'jquery';
+import { ajax, noop } from 'jquery';
+import ls from 'local-storage';
+
 import * as actionTypes from 'constants/actionTypes';
 import getEntrypointFor from 'helpers/get-entrypoint-for';
 import { setStatus } from './status';
@@ -20,18 +22,27 @@ export function fetchPokemonSuccess(data) {
 }
 
 export function fetchPokemon(data) {
+  const { id } = data;
+  const url = getEntrypointFor('pokemon', id);
+  const cache = ls(url);
 
   return dispatch => {
-    let { id } = data;
+    if (cache) {
+      dispatch(fetchPokemonSuccess(cache));
+      return {
+        abort: noop,
+      }
+    }
 
     dispatch(setStatus({
       status: LOADING_STATUS,
       message: LOADING_STATUS_MESSAGE,
     }));
 
-    let request = ajax(getEntrypointFor('pokemon', id));
+    const request = ajax(url);
 
     request.then(d => {
+      ls(url, d);
       dispatch(fetchPokemonSuccess(d));
     }).fail(({ statusText }) => {
       dispatch(setStatus({

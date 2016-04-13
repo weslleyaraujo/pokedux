@@ -1,4 +1,6 @@
-import { ajax } from 'jquery';
+import { ajax, noop } from 'jquery';
+import ls from 'local-storage';
+
 import { setStatus } from './status';
 import getEntrypointFor from 'helpers/get-entrypoint-for';
 
@@ -13,13 +15,23 @@ import {
 } from 'constants/actionTypes';
 
 export function fetchDescription(data) {
-  let { descriptions } = data;
+  const { descriptions } = data;
+  const { resource_uri } = descriptions[0];
+  const url = getEntrypointFor('root', resource_uri);
+  const cache = ls(url);
 
   return dispatch => {
-    let { resource_uri: url } = descriptions[0];
-    let request = ajax(getEntrypointFor('root', url));
+    if (cache) {
+      dispatch(fetchDescriptionSuccess(cache));
+      return {
+        abort: () => noop,
+      }
+    }
+
+    const request = ajax(url);
 
     request.then(d => {
+      ls(url, d);
       dispatch(fetchDescriptionSuccess(d));
       dispatch(setStatus({
         status: NULL_STATUS,
