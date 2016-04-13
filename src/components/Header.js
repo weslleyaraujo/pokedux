@@ -1,5 +1,5 @@
-import React from 'react';
-import { AppBar, AutoComplete, TextField } from 'material-ui';
+import React, { PropTypes } from 'react';
+import { AppBar, TextField } from 'material-ui';
 
 import Pokeball from './Pokeball';
 import navigate from 'helpers/navigate';
@@ -13,31 +13,40 @@ const Header = ({
   <header>
     <AppBar
       style={{
-        paddingLeft: 60
+        paddingLeft: 60,
       }}
       iconElementLeft={
-        <a href='#' onClick={navigate(history, path)}>
+        <a onClick={navigate(history, path)}>
           <Pokeball
             style={{
               position: 'absolute',
               left: 10,
-              top: 19
-            }} />
+              top: 19,
+            }}
+          />
         </a>
       }
       title={
         <span style={{ fontWeight: 300 }}>pokedux</span>
-      }>
-
+      }
+    >
       <TextField
-          style={{
-            marginTop: 5,
-          }}
-          onChange={onSearchSubmit}
-          onEnterKeyDown={onSearchSubmit}
-          hintText={searchHint}/>
+        style={{
+          marginTop: 5,
+        }}
+        onChange={onSearchSubmit}
+        onEnterKeyDown={onSearchSubmit}
+        hintText={searchHint}
+      />
     </AppBar>
   </header>
 );
+
+Header.propTypes = {
+  history: PropTypes.object,
+  path: PropTypes.string,
+  searchHint: PropTypes.string,
+  onSearchSubmit: PropTypes.function,
+};
 
 export default Header;

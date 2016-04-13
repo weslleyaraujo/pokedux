@@ -4,20 +4,19 @@ import ls from 'local-storage';
 import * as actionTypes from 'constants/actionTypes';
 import getEntrypointFor from 'helpers/get-entrypoint-for';
 import { setStatus } from './status';
-import { fetchDescription } from 'actions/description';
 import {
   LOADING_STATUS,
   LOADING_STATUS_MESSAGE,
   NULL_STATUS,
   NETWORK_ERROR,
-  NETWORK_ERROR_MESSAGE
-}  from 'constants/status';
+  NETWORK_ERROR_MESSAGE,
+} from 'constants/status';
 
 
 export function fetchPokemonSuccess(data) {
   return {
     type: actionTypes.FETCH_POKEMON_SUCCESS,
-    data
+    data,
   };
 }
 
@@ -31,7 +30,7 @@ export function fetchPokemon(data) {
       dispatch(fetchPokemonSuccess(cache));
       return {
         abort: noop,
-      }
+      };
     }
 
     dispatch(setStatus({
@@ -53,14 +52,13 @@ export function fetchPokemon(data) {
 
     return {
       abort: () => request.abort(),
-    }
-
-  }
+    };
+  };
 }
 
 export function filterPokemon(data) {
   return {
     type: actionTypes.FILTER_POKEMON,
-    data
+    data,
   };
 }

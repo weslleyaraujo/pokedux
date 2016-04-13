@@ -1,6 +1,4 @@
-import React, { Component } from 'react';
-
-const notFoundSrc = require(`./images/not-found.png`);
+import React, { Component, PropTypes } from 'react';
 
 class PokemonImage extends Component {
 
@@ -9,13 +7,17 @@ class PokemonImage extends Component {
   }
 
   componentDidMount() {
-    let { src } = this.props;
+    const { src } = this.props;
     this.prepareImage(src);
   }
 
   componentWillReceiveProps(props) {
-    let { src } = props;
+    const { src } = props;
     this.prepareImage(src);
+  }
+
+  componentWillUnmount() {
+    this.image.src = '';
   }
 
   prepareImage(src) {
@@ -30,15 +32,16 @@ class PokemonImage extends Component {
     this.image.src = src;
   }
 
-  componentWillUnmount() {
-    this.image.src = '';
-  }
-
   render() {
-    let { isImageLoaded, removeImage } = this.state;
-    return isImageLoaded ? <img {...this.props} /> : null;
+    const { isImageLoaded } = this.state;
+    const { alt } = this.props;
+    return isImageLoaded ? <img {...this.props} alt={alt}/> : null;
   }
 
 }
+
+PokemonImage.propTypes = {
+  src: PropTypes.string,
+};
 
 export default PokemonImage;

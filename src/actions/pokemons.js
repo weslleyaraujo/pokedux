@@ -1,7 +1,7 @@
 import { ajax, noop } from 'jquery';
 import ls from 'local-storage';
 
-import * as actionTypes from 'constants/actionTypes'
+import * as actionTypes from 'constants/actionTypes';
 import getEntrypointFor from 'helpers/get-entrypoint-for';
 import { setStatus } from './status';
 import {
@@ -9,8 +9,8 @@ import {
   LOADING_STATUS_MESSAGE,
   NULL_STATUS,
   NETWORK_ERROR,
-  NETWORK_ERROR_MESSAGE
-}  from 'constants/status';
+  NETWORK_ERROR_MESSAGE,
+} from 'constants/status';
 
 export function fetchPokedexSuccess(data) {
   return {
@@ -24,7 +24,6 @@ export function fetchPokedex() {
   const cache = ls(url);
 
   return dispatch => {
-
     if (cache) {
       dispatch(fetchPokedexSuccess(cache));
       return {
@@ -55,6 +54,6 @@ export function fetchPokedex() {
 
     return {
       abort: () => request.abort(),
-    }
+    };
   };
 }

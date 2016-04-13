@@ -1,5 +1,4 @@
-import React, { Component, PropTypes } from 'react';
-import { Link } from 'react-router';
+import React, { PropTypes } from 'react';
 import styles from './PokedexList.css';
 import PokedexItem from 'components/PokedexItem';
 

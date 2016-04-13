@@ -1,3 +1,4 @@
+/* global test, it, afterEach */
 import { ajax, noop } from 'jquery';
 import ls from 'local-storage';
 
@@ -8,11 +9,18 @@ import {
   NULL_STATUS,
   NETWORK_ERROR,
   NETWORK_ERROR_MESSAGE,
-}  from 'constants/status';
+} from 'constants/status';
 
 import {
   FETCH_DESCRIPTION_SUCCESS,
 } from 'constants/actionTypes';
+
+export function fetchDescriptionSuccess(data) {
+  return {
+    type: FETCH_DESCRIPTION_SUCCESS,
+    data,
+  };
+}
 
 export function fetchDescription(data) {
   const { descriptions } = data;
@@ -25,7 +33,7 @@ export function fetchDescription(data) {
       dispatch(fetchDescriptionSuccess(cache));
       return {
         abort: () => noop,
-      }
+      };
     }
 
     const request = ajax(url);
@@ -37,7 +45,6 @@ export function fetchDescription(data) {
         status: NULL_STATUS,
         message: NULL_STATUS,
       }));
-
     }).fail(({ statusText }) => {
       dispatch(setStatus({
         status: statusText !== 'abort' ? NETWORK_ERROR : NULL_STATUS,
@@ -47,13 +54,7 @@ export function fetchDescription(data) {
 
     return {
       abort: () => request.abort(),
-    }
-  }
-};
-
-export function fetchDescriptionSuccess(data) {
-  return {
-    type: FETCH_DESCRIPTION_SUCCESS,
-    data,
+    };
   };
-};
+}
+
