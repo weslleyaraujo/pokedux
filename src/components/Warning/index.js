@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styles from './Warning.css';
 import { FaExclamationTriangle } from 'react-icons';
 
@@ -8,11 +8,14 @@ const Warning = ({
   <div className={styles.root}>
     <h2 className={styles.title}>
       {text}
-      <FaExclamationTriangle className={styles.iconRight}/>
+      <FaExclamationTriangle className={styles.iconRight} />
     </h2>
   </div>
 );
 
-export default Warning;
+Warning.propTypes = {
+  text: PropTypes.string.isRequired,
+};
 
+export default Warning;
 

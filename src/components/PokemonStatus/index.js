@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import styles from './PokemonStatus.css';
-import { FaHandGrabO, FaShield, FaBarChart, FaSmileO, FaArrowsV, FaHeart } from 'react-icons';
+import { FaHandGrabO, FaShield, FaArrowsV, FaHeart } from 'react-icons';
 
 const Item = ({
   label,
@@ -14,36 +14,44 @@ const Item = ({
   </tr>
 );
 
+Item.propTypes = {
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.string.isRequired,
+  value: PropTypes.string.isRequired,
+};
+
 const PokemonStatus = ({
   attack,
-  catch_rate,
   defense,
-  exp,
-  happiness,
   height,
   hp,
-  image,
-  name,
-  description,
 }) => (
   <div className={styles.root}>
     <table className={styles.table}>
       <tbody>
         <Item
-          icon={<FaHandGrabO />} label={'Attack'} value={attack} />
+          icon={<FaHandGrabO />} label={'Attack'} value={attack}
+        />
         <Item
-          icon={<FaShield />} label={'Defense'} value={defense} />
+          icon={<FaShield />} label={'Defense'} value={defense}
+        />
+        />
         <Item
-          icon={<FaBarChart />} label={'Catch Rate'} value={catch_rate} />
+          icon={<FaArrowsV />} label={'Height'} value={height}
+        />
         <Item
-          icon={<FaSmileO />} label={'Happiness'} value={happiness} />
-        <Item
-          icon={<FaArrowsV />} label={'Height'} value={height} />
-        <Item
-          icon={<FaHeart />} label={'HP'} value={hp} />
+          icon={<FaHeart />} label={'HP'} value={hp}
+        />
       </tbody>
     </table>
   </div>
 );
+
+PokemonStatus.propTypes = {
+  attack: PropTypes.string.isRequired,
+  defense: PropTypes.string.isRequired,
+  height: PropTypes.string.isRequired,
+  hp: PropTypes.string.isRequired,
+};
 
 export default PokemonStatus;

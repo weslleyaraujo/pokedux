@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 
 import styles from './Welcome.css';
 import navigate from 'helpers/navigate';
 
 const Welcome = ({
   history,
-  path
+  path,
 }) => (
   <div>
     <div className={styles.root}>
@@ -14,7 +14,8 @@ const Welcome = ({
         <p>Pokedex App built with React and Redux.</p>
         <div className={styles.line}>
           <button className={styles.outer}
-            onClick={navigate(history, path)}>
+            onClick={navigate(history, path)}
+          >
             <div className={styles.inner}></div>
           </button>
         </div>
@@ -24,5 +25,10 @@ const Welcome = ({
     </div>
   </div>
 );
+
+Welcome.propTypes = {
+  history: PropTypes.string.isRequired,
+  path: PropTypes.string.isRequired,
+};
 
 export default Welcome;
