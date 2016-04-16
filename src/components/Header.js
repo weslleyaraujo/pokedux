@@ -43,10 +43,10 @@ const Header = ({
 );
 
 Header.propTypes = {
-  history: PropTypes.object,
-  path: PropTypes.string,
-  searchHint: PropTypes.string,
-  onSearchSubmit: PropTypes.function,
+  history: PropTypes.object.isRequired,
+  path: PropTypes.string.isRequired,
+  searchHint: PropTypes.string.isRequired,
+  onSearchSubmit: PropTypes.func.isRequired,
 };
 
 export default Header;

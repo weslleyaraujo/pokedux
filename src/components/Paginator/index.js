@@ -15,8 +15,8 @@ const Paginator = ({
 );
 
 Paginator.propTypes = {
-  pageNum: PropTypes.number,
-  onClick: PropTypes.function,
+  pageNum: PropTypes.number.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default Paginator;
