@@ -35,7 +35,6 @@ const PokemonStatus = ({
         <Item
           icon={<FaShield />} label={'Defense'} value={defense}
         />
-        />
         <Item
           icon={<FaArrowsV />} label={'Height'} value={height}
         />

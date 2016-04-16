@@ -27,7 +27,7 @@ const Welcome = ({
 );
 
 Welcome.propTypes = {
-  history: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
   path: PropTypes.string.isRequired,
 };
 

@@ -35,13 +35,14 @@ class PokemonImage extends Component {
   render() {
     const { isImageLoaded } = this.state;
     const { alt } = this.props;
-    return isImageLoaded ? <img {...this.props} alt={alt}/> : null;
+    return isImageLoaded ? <img {...this.props} alt={alt} /> : null;
   }
 
 }
 
 PokemonImage.propTypes = {
-  src: PropTypes.string,
+  src: PropTypes.string.isRequired,
+  alt: PropTypes.string,
 };
 
 export default PokemonImage;

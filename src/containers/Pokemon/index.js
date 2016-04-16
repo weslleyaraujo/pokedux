@@ -65,7 +65,7 @@ class Pokemon extends Component {
           <div className={styles.titleHolder}>
             <Title text={name} /> <br />
           </div>
-          <PokemonImage className={styles.image} src={image} alt={name}/>
+          <PokemonImage className={styles.image} src={image} alt={name} />
           <div className={styles.content}>
             <p>{text}</p>
           </div>

@@ -1,20 +1,19 @@
-import React, { Component } from 'react';
-import fetch from 'isomorphic-fetch';
-import { polyfill } from 'es6-promise';
+import React, { Component, PropTypes } from 'react';
+import { ajax } from 'jquery';
 import { random, times } from 'lodash';
 import { LinearProgress } from 'material-ui';
 
 import styles from './Status.css';
-import { NULL_STATUS, NETWORK_ERROR } from 'constants/status'
+import { NULL_STATUS, NETWORK_ERROR } from 'constants/status';
 
-// TODO: update to something more smart than this.
-const images = times(4).map((x) => require(`./images/0${x}.gif`));
+// TODO: update to something smarter than this.
+const availableImages = times(4).map(x => require(`./images/0${x}.gif`));
 
 function singlePreload(src) {
   return new Promise((resolve, reject) => {
-    fetch(src)
+    ajax(src)
       .then(resolve)
-      .catch(reject);
+      .fail(reject);
   });
 }
 
@@ -22,13 +21,13 @@ function singlePreload(src) {
 class Status extends Component {
 
   state = {
-    images,
+    images: availableImages,
     actual: 0,
     loaded: false,
   };
 
   componentDidMount() {
-    let promises = this.state.images.map((x) => singlePreload(x));
+    const promises = this.state.images.map((x) => singlePreload(x));
 
     Promise
       .all(promises)
@@ -37,26 +36,14 @@ class Status extends Component {
 
   componentWillReceiveProps() {
     this.setState({
-      actual: random(0, images.length - 1)
+      actual: random(0, availableImages.length - 1),
     });
   }
 
-  onFailImage() {
-    // TODO: handle all image failed
-    console.log('whoops, some image failed');
-  }
-
-  onImagesLoaded(events) {
+  onImagesLoaded() {
     this.setState({
       loaded: true
     });
-  }
-
-  renderImage() {
-    let { images, actual  } = this.state;
-    let src = images[actual];
-
-    return (<img src={src} />);
   }
 
   shouldShowImage() {
@@ -65,6 +52,14 @@ class Status extends Component {
 
     return loaded && status !== NETWORK_ERROR;
   }
+
+  renderImage() {
+    const { images, actual  } = this.state;
+    const src = availableImages[actual];
+
+    return (<img src={src} />);
+  }
+
 
   render() {
     const { message, status } = this.props;
@@ -81,5 +76,9 @@ class Status extends Component {
     );
   }
 }
+
+Status.propTypes = {
+  status: PropTypes.string.isRequired,
+};
 
 export default Status;
