@@ -42,7 +42,7 @@ class Status extends Component {
 
   onImagesLoaded() {
     this.setState({
-      loaded: true
+      loaded: true,
     });
   }
 
@@ -54,10 +54,10 @@ class Status extends Component {
   }
 
   renderImage() {
-    const { images, actual  } = this.state;
+    const { actual } = this.state;
     const src = availableImages[actual];
 
-    return (<img src={src} />);
+    return (<img src={src} alt={actual} />);
   }
 
 
@@ -79,6 +79,7 @@ class Status extends Component {
 
 Status.propTypes = {
   status: PropTypes.string.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 export default Status;
