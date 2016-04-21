@@ -14,7 +14,7 @@ function mapStateToProps({ description, pokemon }) {
   return {
     pokemon,
     description,
-  }
+  };
 }
 
 function mapDispatchToProps(dispatch) {
@@ -23,7 +23,7 @@ function mapDispatchToProps(dispatch) {
       ...pokemonActions,
       ...descriptionActions,
     }, dispatch),
-  }
+  };
 }
 
 class Pokemon extends Component {
@@ -33,16 +33,14 @@ class Pokemon extends Component {
   }
 
   componentDidMount() {
-    let { id, pokemon } = this.props.params;
-    let { actions } = this.props;
+    const { id } = this.props.params;
+    const { actions } = this.props;
 
     this.state.requests.push(actions.fetchPokemon({ id }));
   }
 
-  componentWillReceiveProps({ pokemon, description }) {
-    let { descriptions } = pokemon;
-    let { text } = description;
-    let { actions } = this.props;
+  componentWillReceiveProps({ pokemon }) {
+    const { actions } = this.props;
 
     if (this.state.requests.length === 1) {
       this.state.requests.push(actions.fetchDescription(pokemon));
@@ -54,10 +52,10 @@ class Pokemon extends Component {
   }
 
   render() {
-    let { pokemon } = this.props;
-    let { name, image } = pokemon;
-    let { text } = this.props.description;
-    let { goBack } = this.props.history;
+    const { pokemon } = this.props;
+    const { name, image } = pokemon;
+    const { text } = this.props.description;
+    const { goBack } = this.props.history;
 
     return (
       <div className={styles.root}>
@@ -71,7 +69,7 @@ class Pokemon extends Component {
           </div>
           <PokemonStatus {...pokemon} />
           <div className={styles.bottom}>
-            <RaisedButton secondary={true} onClick={goBack} label='Return'/>
+            <RaisedButton secondary onClick={goBack} label="Return" />
           </div>
         </div>
       </div>
@@ -80,7 +78,14 @@ class Pokemon extends Component {
 }
 
 Pokemon.propTypes = {
-  pokemon: PropTypes.object.isRequired
+  pokemon: PropTypes.object.isRequired,
+  params: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  history: PropTypes.object.isRequired,
+  goBack: PropTypes.func.isRequired,
+  actions: PropTypes.object.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pokemon);
