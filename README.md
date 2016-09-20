@@ -22,7 +22,7 @@ npm start
 npm run deploy
 ```
 
-_I would love to get some feedback on it, if have any just open an issue and lets share some knowledge! 🤘_
+_I would love to get some feedback on it, if (you) have any just open an issue and lets share some knowledge! 🤘_
 
 ### Todo
 
